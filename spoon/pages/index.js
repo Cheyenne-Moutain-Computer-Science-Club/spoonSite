@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import Footer from "../components/footer";
 
 // export default function Home() {
 // 	return (
@@ -10,21 +11,16 @@ import Image from "next/image";
 // }
 
 import { useSession, signIn, signOut } from "next-auth/react";
+import NavBar from "../components/navbar";
 
-export default function Component() {
-	const { data: session } = useSession();
-	if (session) {
-		return (
-			<>
-				Signed in as {session.user.email} <br />
-				<button onClick={() => signOut()}>Sign out</button>
-			</>
-		);
-	}
+export default function Home() {
 	return (
-		<>
-			Not signed in <br />
-			<button onClick={() => signIn()}>Sign in</button>
-		</>
+		<div className="min-h-screen">
+			<NavBar />
+			{/* <div className="flex-grow">
+				<h1>Infomation here</h1>
+			</div> */}
+			<Footer />
+		</div>
 	);
 }
