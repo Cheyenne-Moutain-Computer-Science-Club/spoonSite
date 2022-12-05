@@ -17,7 +17,8 @@ export default function NavBar() {
 	}, [isLoading]);
 
 	return (
-		<nav className="rounded-b border-gray-200 bg-white px-2 py-2.5 dark:bg-gray-900 sm:px-4">
+		// bg-slate-900
+		<nav className="rounded-b border-gray-200 bg-gradient-to-r from-orange-400 to-pink-400 px-2 py-2.5 sm:px-4">
 			<div className="container mx-auto flex flex-wrap items-center justify-between">
 				<Link href="/" className="flex items-center">
 					<img
@@ -38,7 +39,7 @@ export default function NavBar() {
 						/>
 						<button
 							type="button"
-							className="mr-3 rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0"
+							className="mr-3 rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0"
 							onClick={() => signOut()}
 						>
 							Logout
@@ -83,11 +84,11 @@ export default function NavBar() {
 						className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
 						id="mobile-menu"
 					>
-						<ul className="mt-4 flex flex-col rounded-lg border border-gray-100 bg-gray-50 p-4 dark:border-gray-700 dark:bg-gray-800 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:bg-white md:text-sm md:font-medium md:dark:bg-gray-900">
+						<ul className="mt-4 flex flex-col rounded-lg border border-gray-700 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:text-sm md:font-medium">
 							<li>
 								<Link
 									href="/"
-									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
 								>
 									Home
 								</Link>

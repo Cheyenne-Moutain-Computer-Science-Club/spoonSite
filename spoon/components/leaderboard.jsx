@@ -8,12 +8,13 @@ import {
 } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import PersonCard from "./personCard";
+import PersonRow from "./personRow";
 import { app } from "../pages/_firebase.js";
 
 const db = getFirestore(app);
 
 // 	where("__name__", "!=", "global"),
-const q = query(collection(db, "users"), orderBy("score", "asc"));
+const q = query(collection(db, "users"), orderBy("score", "desc"));
 
 const getData = async () => {
 	let result = [];
@@ -37,8 +38,23 @@ export default function Leaderboard() {
 	}
 
 	const cards = data.map((data, i) => {
-		return <PersonCard obj={data} key={i} />;
+		if (i < 3) {
+			return <PersonCard obj={data} place={i + 1} key={i} />;
+		}
 	});
 
-	return <div>{cards}</div>;
+	const rows = data.map((data, i) => {
+		if (i > 2 && i < 100) {
+			return <PersonRow obj={data} place={i + 1} key={i} />;
+		}
+	});
+
+	return (
+		<div>
+			<div className="container mx-auto mt-4">
+				<div className="grid grid-cols-3">{cards}</div>
+			</div>
+			<div className="container mx-auto mt-4">{rows}</div>
+		</div>
+	);
 }
