@@ -23,7 +23,7 @@ export default function newUser() {
 		badges: [],
 		tagged: [],
 		outBy: "",
-		id: 00000000,
+		id: 0,
 	});
 
 	const publishNewUserData = async () => {
