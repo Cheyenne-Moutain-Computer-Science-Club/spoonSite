@@ -1,6 +1,6 @@
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
-import { signOut } from "next-auth/react";
+import Link from "next/link";
 
 // A component that displays a dropdown menu with a user's profile information
 export default function UserProfileDropdown() {
@@ -32,12 +32,12 @@ export default function UserProfileDropdown() {
 							aria-labelledby="dropdownDefault"
 						>
 							<li>
-								<a
-									href="#"
-									class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-								>
-									Dashboard
-								</a>
+								<div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
+									<div>{session.user.name}</div>
+									<div class="truncate font-medium">
+										{session.user.email}
+									</div>
+								</div>
 							</li>
 							<li>
 								<button
@@ -47,13 +47,24 @@ export default function UserProfileDropdown() {
 									Settings
 								</button>
 							</li>
-							<li>
-								<a
-									href="#"
-									class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-								>
-									Earnings
-								</a>
+							<li class="flex py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+								<div className="mr-3 text-white">
+									<svg
+										class="h-6 w-6"
+										fill="none"
+										stroke="currentColor"
+										viewBox="0 0 24 24"
+										xmlns="http://www.w3.org/2000/svg"
+									>
+										<path
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											stroke-width="2"
+											d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+										></path>
+									</svg>
+								</div>
+								<Link href="/profile">My Profile</Link>
 							</li>
 							<hr class="border-white" />
 							<li>
@@ -87,13 +98,3 @@ export default function UserProfileDropdown() {
 		</div>
 	);
 }
-
-/*
-							<button
-								type="button"
-								className="mr-3 rounded-lg bg-yellow-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-yellow-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 md:mr-0"
-								onClick={() => signOut()}
-							>
-								Logout
-							</button>
-*/

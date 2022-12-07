@@ -1,14 +1,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import Footer from "../components/footer";
-
-// export default function Home() {
-// 	return (
-// 		<div>
-// 			<h1>Hello World</h1>
-// 		</div>
-// 	);
-// }
+``;
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import NavBar from "../components/navbar";

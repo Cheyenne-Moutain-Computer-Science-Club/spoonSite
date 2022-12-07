@@ -27,14 +27,9 @@ export default function newUser() {
 	});
 
 	const publishNewUserData = async () => {
-		// const q = query(
-		// 	collection(db, "users"),
-		// 	where("email", "==", session.user.email)
-		// );
-
 		const q = query(
 			collection(db, "users"),
-			where("__name__", "!=", "global")
+			where("email", "==", session.user.email)
 		);
 
 		let result = [];
