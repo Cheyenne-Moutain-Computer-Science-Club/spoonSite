@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { app } from "../pages/_firebase.js";
 import {
@@ -24,20 +24,28 @@ export default function Report() {
             collection(db, "users"),
             where("email", "==", session.user.email)
         );
-        let taggerDoc = (await getDocs(queryTagger)).docs[0].data();
+        let taggerDoc = (await getDocs(queryTagger)).docs[0];
 
         // Reported to be tagged query (based on id)
         const queryVictim = query(
             collection(db, "users"),
             where("id", "==", uuid)
         );
-        let victimDoc = (await getDocs(queryVictim)).docs[0].data();
+        let victimDoc = (await getDocs(queryVictim)).docs[0];
 
-        if (taggerDoc.outBy || victimDoc.outBy) {
+        if (taggerDoc.data().outBy || victimDoc.data().outBy) {
             // Run if tagger or victim is already tagged
             alert("invalid");
         } else {
             // Run if tagger and victim are not tagged
+
+            // Append victim to tagger's "kill list"
+            const newKillList = [...taggerDoc.data().tagged, uuid];
+            await updateDoc(taggerDoc, { tagged: newKillList });
+
+            // Update victim's database entry to reflect who has tagged them
+            const taggerID = taggerDoc.data().id;
+            await updateDoc(victimDoc, { outBy: taggerID });
         }
     };
 
@@ -48,7 +56,6 @@ export default function Report() {
 
     // Submit handler - publish data
     const handleSubmit = (event) => {
-        console.log(formData);
         event.preventDefault();
         publishTagData(Number(formData));
     };
