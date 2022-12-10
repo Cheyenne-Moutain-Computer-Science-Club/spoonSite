@@ -19,4 +19,4 @@ jobs:
             - name: Firebase Deploy
               env: 
                 FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-              run: firebase deploy -P ${{ secrets.NEXT_PUBLIC_FIRE_APP_ID }}
+              run: firebase deploy -P ${{ secrets.FIREBASE_PROJECT_ID }}
