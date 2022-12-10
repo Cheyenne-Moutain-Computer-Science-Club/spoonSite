@@ -19,4 +19,6 @@ jobs:
             - name: Firebase Deploy
               env: 
                 FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-              run: firebase deploy
+              run: |
+                firebase use spoon-a7088
+                firebase deploy
