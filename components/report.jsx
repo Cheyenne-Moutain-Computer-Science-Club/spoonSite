@@ -10,6 +10,7 @@ import {
     getFirestore,
     getDocs,
 } from "firebase/firestore";
+import TFASyleInput from "../components/tfaStyle";
 
 const db = getFirestore(app);
 
