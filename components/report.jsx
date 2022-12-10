@@ -64,9 +64,9 @@ export default function Report() {
 
     return (
         <div className="m-5">
-            <div>
-                <h1 className="text-7xl font-semibold text-white">
-                    gurbangooly
+            <div className="bg-gradient-to-r from-orange-400 to-pink-400">
+                <h1 className="ml-2 mb-10 bg-gray-900 pl-3 font-sans text-7xl font-semibold text-white">
+                    Tag Reporting
                 </h1>
             </div>
             <div>
