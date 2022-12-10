@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { app } from "../../_firebase.js";
+import { app } from "../../../public/_firebase.js";
 import {
 	query,
 	collection,
@@ -14,7 +14,7 @@ import Router from "next/router";
 
 const db = getFirestore(app);
 
-export default function newUser() {
+export default function NewUser() {
 	const { data: session } = useSession();
 
 	const [registrationData, setRegistrationData] = useState({
