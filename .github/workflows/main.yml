@@ -20,5 +20,6 @@ jobs:
               env: 
                 FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
               run: |
+                firebase experiments:enable webframeworks
                 firebase use spoon-a7088
                 firebase deploy
