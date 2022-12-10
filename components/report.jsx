@@ -33,19 +33,21 @@ export default function Report() {
         );
         let victimDoc = (await getDocs(queryVictim)).docs[0];
 
-        if (taggerDoc.data().outBy || victimDoc.data().outBy) {
+        if (taggerDoc.data().outBy != 0 || victimDoc.data().outBy != 0) {
             // Run if tagger or victim is already tagged
             alert("invalid");
         } else {
             // Run if tagger and victim are not tagged
 
             // Append victim to tagger's "kill list"
+            const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
-            await updateDoc(taggerDoc, { tagged: newKillList });
+            await updateDoc(taggerRef, { tagged: newKillList });
 
             // Update victim's database entry to reflect who has tagged them
+            const victimRef = doc(db, "users", victimDoc.id);
             const taggerID = taggerDoc.data().id;
-            await updateDoc(victimDoc, { outBy: taggerID });
+            await updateDoc(victimRef, { outBy: taggerID });
         }
     };
 
