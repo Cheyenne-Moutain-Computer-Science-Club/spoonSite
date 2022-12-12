@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import { app } from "/pages/_firebase.js";
 import {
@@ -16,7 +16,6 @@ const db = getFirestore(app);
 
 export default function tagreport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
-    const [combinedInput, setCombinedInput] = useState();
     const [formData, setFormData] = useState();
 
     const { data: session } = useSession();
@@ -66,18 +65,18 @@ export default function tagreport() {
             const nextInput = document.getElementById(`input-${index + 1}`);
             nextInput.focus();
         }
-
-        // Set new combined value
-        let newCombinedValue = values;
-        newCombinedValue = newCombinedValue.join("");
-        setCombinedInput(newCombinedValue);
     }
 
     // Submit handler - publish data
     const handleSubmit = (event) => {
         event.preventDefault();
-        publishTagData(Number(combinedInput));
-        console.log(Number(combinedInput));
+
+        // Set new combined value
+        let combinedValue = values;
+        combinedValue = combinedValue.join("");
+        // console.log(combinedValue);
+
+        publishTagData(combinedValue);
     };
 
     const TFAStyleInput = (
