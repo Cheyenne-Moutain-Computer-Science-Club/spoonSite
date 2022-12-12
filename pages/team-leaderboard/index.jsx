@@ -35,7 +35,7 @@ export default function LeaderboardPage() {
 	}, []);
 
 	if (data == null) {
-		return <div>Loading...</div>;
+		return <div>Loading....</div>;
 		// return <QuestionLoader />;
 	}
 
