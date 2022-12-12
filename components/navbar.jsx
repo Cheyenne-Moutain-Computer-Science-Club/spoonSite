@@ -18,13 +18,12 @@ export default function NavBar() {
 	}, [isLoading]);
 
 	return (
-		// bg-slate-900
-		<nav className="rounded-b border-gray-200 bg-gradient-to-r from-orange-400 to-pink-400 px-2 py-2.5 sm:px-4">
+		<nav className="rounded-b border-gray-200 bg-gradient-to-r from-blue-500 to-teal-300 px-2 py-2.5 sm:px-4">
 			<div className="container mx-auto flex flex-wrap items-center justify-between">
 				<Link href="/" className="flex items-center">
 					<img
-						src="https://flowbite.com/docs/images/logo.svg"
-						className="mr-3 h-6 sm:h-9"
+						src="/Interact-Club-Official.png"
+						className="mr-3 h-6 sm:h-11"
 						alt="Flowbite Logo"
 					/>
 					<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
@@ -44,56 +43,55 @@ export default function NavBar() {
 						</button>
 					</div>
 				)}
-				{session && (
-					<div
-						className="hidden w-full items-center justify-between md:order-1 md:flex md:w-auto"
-						id="mobile-menu"
-					>
-						<ul className="mt-4 flex flex-col rounded-lg border border-gray-700 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:text-sm md:font-medium">
-							<li>
-								<Link
-									href="/"
-									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-								>
-									Home
-								</Link>
-							</li>
-							<li>
-								<Link
-									href="/leaderboard"
-									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-								>
-									Leaderboard
-								</Link>
-							</li>
-							<li>
-								<a
-									href="#"
-									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-								>
-									Services
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-								>
-									Pricing
-								</a>
-							</li>
-							<li>
-								<a
-									href="#"
-									className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
-								>
-									Contact
-								</a>
-							</li>
-						</ul>
-					</div>
-				)}
+				{session && menuItems}
 			</div>
 		</nav>
 	);
 }
+
+const menuItems = (
+	<div className="order-1 flex w-auto items-center justify-between">
+		<ul className="mt-4 flex flex-col rounded-lg border border-gray-700 p-4 md:mt-0 md:flex-row md:space-x-8 md:border-0 md:text-sm md:font-medium">
+			<li>
+				<Link
+					href="/"
+					className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+				>
+					Home
+				</Link>
+			</li>
+			<li>
+				<Link
+					href="/leaderboard"
+					className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+				>
+					Leaderboard
+				</Link>
+			</li>
+			<li>
+				<a
+					href="#"
+					className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+				>
+					Services
+				</a>
+			</li>
+			<li>
+				<a
+					href="#"
+					className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+				>
+					Pricing
+				</a>
+			</li>
+			<li>
+				<a
+					href="#"
+					className="block rounded py-2 pl-3 pr-4 text-gray-700 hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:p-0 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:bg-transparent md:dark:hover:text-white"
+				>
+					Contact
+				</a>
+			</li>
+		</ul>
+	</div>
+);

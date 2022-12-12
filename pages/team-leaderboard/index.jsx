@@ -11,7 +11,6 @@ import {
 	orderBy,
 } from "firebase/firestore";
 import PersonCard from "../../components/personCard";
-import PersonRow from "../../components/personRow";
 import { app } from "../../public/_firebase.js";
 
 const db = getFirestore(app);
@@ -41,17 +40,7 @@ export default function LeaderboardPage() {
 	}
 
 	const cards = data.map((data, i) => {
-		if (i < 3) {
-			return <PersonCard obj={data} place={i + 1} key={i} />;
-		}
-	});
-
-	const rows = data.map((data, i) => {
-		if (i > 2) {
-			return (
-				<PersonRow obj={data} place={i + 1} key={i} highlight={false} />
-			);
-		}
+		return <PersonCard obj={data} place={i + 1} key={i} />;
 	});
 
 	return (
@@ -61,7 +50,6 @@ export default function LeaderboardPage() {
 				<div className="container mx-auto mt-4">
 					<div className="grid grid-cols-3">{cards}</div>
 				</div>
-				<div className="container mx-auto mt-4">{rows}</div>
 			</div>
 			<Footer />
 		</div>
