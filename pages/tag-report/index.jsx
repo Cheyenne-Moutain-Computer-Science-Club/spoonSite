@@ -16,7 +16,6 @@ const db = getFirestore(app);
 
 export default function TagReport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
-    const [formData, setFormData] = useState();
 
     const { data: session } = useSession();
 
