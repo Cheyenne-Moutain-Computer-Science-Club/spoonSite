@@ -4,13 +4,14 @@ on:
   pull_request:
 
 jobs:
-  release-pr:
-    name: Publish PR
+  test-build:
+    name: Test Build
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
     steps:
-      - name: Build
-        run: |
+     - name: Install Dependencies
+       run: |
             npm install
-            npm install -g firebase-tools
+     - name: Build
+       run: |
             npm run build
