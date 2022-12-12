@@ -14,7 +14,7 @@ import NavBar from "../../components/navbar";
 
 const db = getFirestore(app);
 
-export default function tagreport() {
+export default function TagReport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
     const [formData, setFormData] = useState();
 
