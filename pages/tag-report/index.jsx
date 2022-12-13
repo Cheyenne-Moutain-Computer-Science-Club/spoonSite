@@ -81,6 +81,11 @@ export default function TagReport() {
         publishTagData(Number(combinedValue));
     };
 
+    // Reset handler - clear text fields
+    const handleReset = () => {
+        setValues(["", "", "", "", "", "", "", ""]);
+    };
+
     const TFAStyleInput = (
         <div name="2FAStyleInputs" className="flex justify-center">
             <div className="overflow-scroll whitespace-nowrap">
@@ -109,7 +114,7 @@ export default function TagReport() {
                     </h1>
                 </div>
                 <div>
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleSubmit} onReset={handleReset}>
                         {TFAStyleInput}
                         <div className="mt-10 flex justify-center">
                             <button
@@ -118,7 +123,10 @@ export default function TagReport() {
                             >
                                 Submit
                             </button>
-                            <button className="ml-7 rounded-md bg-red-500 py-2 px-9 text-base text-white hover:bg-red-400">
+                            <button
+                                type="reset"
+                                className="ml-7 rounded-md bg-red-500 py-2 px-9 text-base text-white hover:bg-red-400"
+                            >
                                 Reset
                             </button>
                         </div>
