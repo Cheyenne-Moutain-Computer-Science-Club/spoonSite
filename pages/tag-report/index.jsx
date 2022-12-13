@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { app } from "/pages/_firebase.js";
+import { app } from "/public/_firebase.js";
 import {
     query,
     collection,
@@ -43,7 +43,10 @@ export default function TagReport() {
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
-            await updateDoc(taggerRef, { tagged: newKillList });
+            await updateDoc(taggerRef, {
+                tagged: newKillList,
+                score: taggerDoc.data().score + 1,
+            });
 
             // Update victim's database entry to reflect who has tagged them
             const victimRef = doc(db, "users", victimDoc.id);
@@ -75,7 +78,7 @@ export default function TagReport() {
         combinedValue = combinedValue.join("");
         // console.log(combinedValue);
 
-        publishTagData(combinedValue);
+        publishTagData(Number(combinedValue));
     };
 
     const TFAStyleInput = (
