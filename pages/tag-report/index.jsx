@@ -11,11 +11,13 @@ import {
     getDocs,
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
+import ErrorModal from "../../components/errorModal.jsx";
 
 const db = getFirestore(app);
 
 export default function TagReport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
+    const [showModal, setShowModal] = React.useState(false);
 
     const { data: session } = useSession();
 
@@ -133,6 +135,14 @@ export default function TagReport() {
                     </form>
                 </div>
             </div>
+            <button
+                className="mr-1 mb-1 rounded bg-pink-500 px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-pink-600"
+                type="button"
+                onClick={() => setShowModal(true)}
+            >
+                Open small modal
+            </button>
+            {showModal ? ErrorModal(() => setShowModal(false)) : null}
         </div>
     );
 }
