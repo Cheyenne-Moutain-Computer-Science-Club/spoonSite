@@ -142,7 +142,12 @@ export default function TagReport() {
             >
                 Open small modal
             </button>
-            {showModal ? ErrorModal(() => setShowModal(false)) : null}
+            {showModal
+                ? ErrorModal(
+                      () => setShowModal(false),
+                      "It looks like you're trying to tag someone who is already tagged... Unfortunately that is not how this game works. Have a nice day!"
+                  )
+                : null}
         </div>
     );
 }
