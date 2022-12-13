@@ -10,14 +10,6 @@ export default function ErrorModal(closeHandler, message) {
                         {/*header*/}
                         <div className="flex items-start justify-between rounded-t border-b border-solid border-slate-200 p-5">
                             <h3 className="text-3xl font-semibold">Uh-oh...</h3>
-                            <button
-                                className="float-right ml-auto border-0 bg-transparent p-1 text-3xl font-semibold leading-none text-black opacity-5 outline-none focus:outline-none"
-                                onClick={() => setShowModal(false)}
-                            >
-                                <span className="block h-6 w-6 bg-transparent text-2xl text-black opacity-5 outline-none focus:outline-none">
-                                    ×
-                                </span>
-                            </button>
                         </div>
                         {/*body*/}
                         <div className="relative flex flex-auto flex-row p-6">
