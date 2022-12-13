@@ -83,7 +83,7 @@ export default function TagReport() {
 
     const TFAStyleInput = (
         <div name="2FAStyleInputs" className="flex justify-center">
-            <div className="whitespace-nowrap">
+            <div className="overflow-scroll whitespace-nowrap">
                 {values.map((value, index) => (
                     <input
                         key={index}
@@ -91,7 +91,8 @@ export default function TagReport() {
                         value={value}
                         id={`input-${index}`}
                         onChange={(event) => handleChange(event, index)}
-                        className="m-5 w-20 rounded-2xl bg-gray-800 py-6 text-center text-white"
+                        autoComplete="off"
+                        className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white"
                     />
                 ))}
             </div>
@@ -117,7 +118,7 @@ export default function TagReport() {
                             >
                                 Submit
                             </button>
-                            <button className="ml-7 rounded-md bg-red-500 py-2 px-8 text-base text-white hover:bg-red-400">
+                            <button className="ml-7 rounded-md bg-red-500 py-2 px-9 text-base text-white hover:bg-red-400">
                                 Reset
                             </button>
                         </div>
