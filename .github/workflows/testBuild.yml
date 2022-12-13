@@ -1,0 +1,18 @@
+name: build
+
+on:
+  pull_request:
+
+jobs:
+  test-build:
+    name: Test Build
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+     - uses: actions/checkout@v1
+     - name: Install Dependencies
+       run: |
+            npm install
+     - name: Build
+       run: |
+            npm run build
