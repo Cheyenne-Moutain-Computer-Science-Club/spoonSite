@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { app } from "/public/_firebase.js";
+import { app } from "../../public/_firebase.js";
 import {
     query,
     collection,
@@ -110,12 +110,17 @@ export default function TagReport() {
                 <div>
                     <form onSubmit={handleSubmit}>
                         {TFAStyleInput}
-                        <button
-                            type="submit"
-                            className="mt-9 rounded bg-indigo-600 py-1 px-3 text-xs text-white hover:bg-indigo-500"
-                        >
-                            Submit
-                        </button>
+                        <div className="mt-10 flex justify-center">
+                            <button
+                                type="submit"
+                                className=" rounded-md bg-indigo-600 py-2 px-8 text-base text-white hover:bg-indigo-500"
+                            >
+                                Submit
+                            </button>
+                            <button className="ml-7 rounded-md bg-red-500 py-2 px-8 text-base text-white hover:bg-red-400">
+                                Reset
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
