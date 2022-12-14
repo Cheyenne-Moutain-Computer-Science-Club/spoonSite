@@ -37,6 +37,8 @@ export default function TagReport() {
         );
         let victimSnap = await getDocs(queryVictim);
         let victimDoc = victimSnap.docs[0];
+        console.log(victimSnap);
+        console.log("Exists output: " + victimSnap.exists);
 
         if (taggerDoc.data().outBy != 0) {
             // Run if tagger is already tagged
@@ -44,11 +46,12 @@ export default function TagReport() {
                 "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Unfortunately this is not something that you can do."
             );
             setShowModal(true);
-        } else if (!victimSnap.exists) {
+        } else if (!(victimSnap.size > 0)) {
             // Run if ID does not exist
             setErrModalMsg(
                 "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered all of the numbers properly."
             );
+            // console.log(victimSnap.exists);
             setShowModal(true);
         } else if (victimDoc.data().outBy != 0) {
             setErrModalMsg(
@@ -159,7 +162,7 @@ export default function TagReport() {
                 Open small modal
             </button> */}
             {showModal
-                ? ErrorModal(() => setShowModal(false), { errModalMsg })
+                ? ErrorModal(() => setShowModal(false), errModalMsg)
                 : null}
         </div>
     );
