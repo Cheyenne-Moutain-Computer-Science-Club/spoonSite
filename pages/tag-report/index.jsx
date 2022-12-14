@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
@@ -18,6 +18,7 @@ const db = getFirestore(app);
 export default function TagReport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
     const [showModal, setShowModal] = useState(false);
+    const [errModalMsg, setErrModalMsg] = useState("An error ocurred");
 
     const { data: session } = useSession();
 
@@ -34,14 +35,29 @@ export default function TagReport() {
             collection(db, "users"),
             where("id", "==", uuid)
         );
-        let victimDoc = (await getDocs(queryVictim)).docs[0];
+        let victimSnap = await getDocs(queryVictim);
+        let victimDoc = victimSnap.docs[0];
 
-        if (taggerDoc.data().outBy != 0 || victimDoc.data().outBy != 0) {
-            // Run if tagger or victim is already tagged
-            alert("invalid");
+        if (taggerDoc.data().outBy != 0) {
+            // Run if tagger is already tagged
+            setErrModalMsg(
+                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Unfortunately this is not something that you can do."
+            );
+            setShowModal(true);
+        } else if (!victimSnap.exists) {
+            // Run if ID does not exist
+            setErrModalMsg(
+                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered all of the numbers properly."
+            );
+            setShowModal(true);
+        } else if (victimDoc.data().outBy != 0) {
+            setErrModalMsg(
+                "It looks like you're trying to tag someone who is already tagged... Unfortunately that is not how this game works. Have a nice day!"
+            );
+            setShowModal(true);
         } else {
             // Run if tagger and victim are not tagged
-
+            alert(3);
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
@@ -135,18 +151,15 @@ export default function TagReport() {
                     </form>
                 </div>
             </div>
-            <button
+            {/* <button
                 className="mr-1 mb-1 rounded bg-pink-500 px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-pink-600"
                 type="button"
                 onClick={() => setShowModal(true)}
             >
                 Open small modal
-            </button>
+            </button> */}
             {showModal
-                ? ErrorModal(
-                      () => setShowModal(false),
-                      "It looks like you're trying to tag someone who is already tagged... Unfortunately that is not how this game works. Have a nice day!"
-                  )
+                ? ErrorModal(() => setShowModal(false), { errModalMsg })
                 : null}
         </div>
     );
