@@ -1,24 +1,25 @@
 import NavBar from "../../components/navbar";
+import Footer from "../../components/footer";
 
 export default function Rules() {
     return (
         <div>
             <NavBar />
-            <div className="m-5 leading-9 tracking-wider text-white">
-                <h1>Rules</h1>
+            <div className="m-5 leading-8 tracking-wider text-gray-300">
+                <h1 className="text-3xl font-black">Rules</h1>
                 <br />
                 <p>
                     All rules are made to protect student safety, learning, and
                     privacy. The rules are, but not limited to the following:
                 </p>
-                <ol className="mx-10 my-5 list-decimal space-y-7">
+                <ol className="mx-10 my-5 list-decimal space-y-8 marker:font-black">
                     <li>
                         All school rules listed in the student handbook apply to
                         this game.
                     </li>
                     <li>
                         Gameplay areas:
-                        <ul className="">
+                        <ul className="ml-5 list-disc space-y-2">
                             <li>
                                 The following areas are considered “safe zones”
                                 and you can not be tagged while in these zones:
@@ -58,7 +59,7 @@ export default function Rules() {
                     </li>
                     <li>
                         Spoon related rules:
-                        <ul>
+                        <ul className="ml-5 list-disc space-y-2">
                             <li>
                                 Spoons must be held in your hand and visible to
                                 other players, not attached to your body with
