@@ -12,7 +12,7 @@ export default function Rules() {
                     All rules are made to protect student safety, learning, and
                     privacy. The rules are, but not limited to the following:
                 </p>
-                <ol className="mx-10 my-5 list-decimal space-y-8 marker:font-black">
+                <ol className="mx-10 my-5 list-decimal space-y-8 marker:font-black marker:text-white">
                     <li>
                         All school rules listed in the student handbook apply to
                         this game.
