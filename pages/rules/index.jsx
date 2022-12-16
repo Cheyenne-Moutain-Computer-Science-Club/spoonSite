@@ -13,7 +13,7 @@ export default function Rules() {
                     privacy. The rules are, but not limited to the following:
                 </p>
                 <ol className="mx-10 my-5 list-decimal space-y-8 marker:font-black marker:text-white">
-                    <li>
+                    <li className="underline">
                         All school rules listed in the student handbook apply to
                         this game.
                     </li>
@@ -21,20 +21,25 @@ export default function Rules() {
                         Gameplay areas:
                         <ul className="ml-5 list-disc space-y-2">
                             <li>
-                                The following areas are considered “safe zones”
-                                and you can not be tagged while in these zones:
-                                bathrooms, classrooms, athletic practices,
-                                parking lot, locker rooms, library, computer
-                                lab, Kiva, the gyms, weight room, field, and
-                                pool while class is in session, and anywhere
-                                that is not inside the physical school building,
-                                except the stadium.
+                                <span className="underline">
+                                    The following areas are considered “safe
+                                    zones”
+                                </span>
+                                &nbsp;and you can not be tagged while in these
+                                zones: bathrooms, classrooms, athletic
+                                practices, parking lot, locker rooms, library,
+                                computer lab, Kiva, the gyms, weight room,
+                                field, and pool while class is in session, and
+                                anywhere that is not inside the physical school
+                                building, except the stadium.
                             </li>
                             <li>
-                                Gameplay will commence in these areas: hallways,
-                                cafeteria, in the courtyard, in the gyms while
-                                there is no class and at after school events
-                                (sports games, etc).
+                                <span className="underline">
+                                    Gameplay will commence in these areas:
+                                </span>
+                                &nbsp;hallways, cafeteria, in the courtyard, in
+                                the gyms while there is no class and at after
+                                school events (sports games, etc).
                             </li>
                             <li>
                                 If your class is moving from one place in the
@@ -45,11 +50,14 @@ export default function Rules() {
                                 moving from classroom to library, assemblies)
                             </li>
                             <li>
-                                Classrooms, library, computer lab, and Kiva are
-                                not safe zones before school (up to the
-                                beginning of 1st period @ 8:25 am) and after
-                                school (starting @ 3:45 pm) unless it is a
-                                Zero-Hour classroom.
+                                Classrooms, library, computer lab, and Kiva
+                                are&nbsp;
+                                <span className="underline">
+                                    not safe zones
+                                </span>
+                                &nbsp;before school (up to the beginning of 1st
+                                period @ 8:25 am) and after school (starting @
+                                3:45 pm) unless it is a Zero-Hour classroom.
                             </li>
                         </ul>
                     </li>
@@ -61,9 +69,12 @@ export default function Rules() {
                         Spoon related rules:
                         <ul className="ml-5 list-disc space-y-2">
                             <li>
-                                Spoons must be held in your hand and visible to
-                                other players, not attached to your body with
-                                tape, string, or on clothing (pocket) etc.
+                                <span className="underline">
+                                    Spoons must be held in your hand and visible
+                                    to other players,
+                                </span>
+                                &nbsp;not attached to your body with tape,
+                                string, or on clothing (pocket) etc.
                             </li>
                             <li>
                                 If you forget to bring or lose your spoon, you
