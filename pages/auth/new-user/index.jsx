@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { app } from "../../../public/_firebase.js";
+import { app } from "../../../lib/firebase.js";
 import {
 	query,
 	collection,

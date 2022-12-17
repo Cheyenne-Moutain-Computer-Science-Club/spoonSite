@@ -1,10 +1,12 @@
-import { useSession, signIn, signOut } from "next-auth/react";
+// import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut } from "../lib/auth";
+import { useUserData } from "../lib/hooks";
 import { useState, useEffect } from "react";
 import UserProfileDropdown from "./userProfileDropdown";
 import Link from "next/link";
 
 export default function NavBar() {
-	const { data: session } = useSession();
+	const user = useUserData().user;
 
 	const [mobileMenuState, setMobileMenuState] = useState(false);
 
@@ -14,7 +16,7 @@ export default function NavBar() {
 
 	const mobileMenu = (
 		<div class="absolute top-12 w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300">
-			{!session && loginButton}
+			{!user && loginButton}
 			{true && menuItems}
 			{true && (
 				<div className="flex flex-col md:order-2">
@@ -108,8 +110,8 @@ export default function NavBar() {
 		<nav className="rounded-b border-gray-200 bg-gradient-to-r from-blue-500 to-teal-300 py-2.5 sm:px-4">
 			<div className="container mx-auto hidden flex-wrap items-center justify-between px-2 sm:flex">
 				{logoBlock}
-				{session ? <UserProfileDropdown /> : loginButton}
-				{session && menuItems}
+				{user ? <UserProfileDropdown /> : loginButton}
+				{user && menuItems}
 			</div>
 			<div className="container mx-auto flex flex-wrap items-center justify-between px-2 sm:hidden">
 				{logoBlock}
