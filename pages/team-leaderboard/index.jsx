@@ -11,7 +11,7 @@ import {
 	orderBy,
 } from "firebase/firestore";
 import PersonCard from "../../components/personCard";
-import { app } from "../../lib/_firebase.js";
+// import { app } from "../../lib/_firebase.js";
 
 const db = getFirestore(app);
 
