@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
-import { app } from "../../lib/firebase.js";
+// import { app } from "../../lib/firebase.js";
 import {
 	query,
 	collection,
