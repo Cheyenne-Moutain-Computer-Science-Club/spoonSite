@@ -40,8 +40,7 @@ export default function TagReport() {
         );
         let victimSnap = await getDocs(queryVictim);
         let victimDoc = victimSnap.docs[0];
-        console.log(victimSnap);
-        console.log("Exists output: " + victimSnap.exists);
+        // console.log(victimSnap);
 
         if (taggerDoc.data().outBy != 0) {
             // Run if tagger is already tagged
