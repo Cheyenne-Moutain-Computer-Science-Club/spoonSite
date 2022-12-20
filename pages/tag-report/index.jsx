@@ -136,7 +136,13 @@ export default function TagReport() {
                 </div>
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
-                        {TFAStyleInput}
+                        <div className="hidden">{TFAStyleInput}</div>
+                        <div className="">
+                            <input
+                                type="text"
+                                className="w-200 rounded bg-gray-500 px-12 py-20 text-base font-semibold text-white"
+                            ></input>
+                        </div>
                         <div className="mt-10 flex justify-center">
                             <button
                                 type="submit"
