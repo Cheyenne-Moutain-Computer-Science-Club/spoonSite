@@ -97,16 +97,15 @@ export default function TagReport() {
     // These comments may be soon outdated ^^^
     function handleChangeNormal(event) {
         // For the normal input change handler, the entire input is event.target.value
-        const newInput = event.target.value;
+        const newInput = event.target.value.split("");
 
-        if (/^[0-9]$/.test(newInput) || newInput === "") {
+        if (!isNaN(event.target.value)) {
             const newValues = [
-                ...newInput.split(""),
+                ...newInput,
                 ...Array(8 - newInput.length).fill(""),
             ];
             setValues(newValues);
         }
-        console.log(values);
     }
 
     // Submit handler - publish data
