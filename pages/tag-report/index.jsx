@@ -43,24 +43,25 @@ export default function TagReport() {
         if (taggerDoc.data().outBy != 0) {
             // Run if tagger is already tagged
             setErrModalMsg(
-                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Unfortunately this is not something that you can do."
+                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)"
             );
             setShowModal(true);
         } else if (!(victimSnap.size > 0)) {
             // Run if ID does not exist
             setErrModalMsg(
-                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered all of the numbers properly."
+                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly."
             );
             // console.log(victimSnap.exists);
             setShowModal(true);
         } else if (victimDoc.data().outBy != 0) {
             setErrModalMsg(
-                "It looks like you're trying to tag someone who is already tagged... Unfortunately that is not how this game works. Have a nice day!"
+                "It looks like you're trying to tag someone who is already tagged... Unfortunately that's not how this game works. Have a nice day!"
             );
             setShowModal(true);
         } else {
             // Run if tagger and victim are not tagged
-            alert(3);
+            //Change this to a modal, alert, confirmation message, etc.
+            alert("You have successfully tagged " + victimDoc.data().name);
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
@@ -90,16 +91,12 @@ export default function TagReport() {
         }
     }
 
-    // May be able to consolidate these two functions
-    // Make the first part it's own function with event and index params
-    // Call the first function only for the normal input
-    // Make a TFA function that calls the first function as well as the focus-specific code
-    // These comments may be soon outdated ^^^
+    // This function handles the change of the textbox so the same state can be used as TFAStyle
     function handleChangeNormal(event) {
         // For the normal input change handler, the entire input is event.target.value
         const newInput = event.target.value.split("");
 
-        if (!isNaN(event.target.value)) {
+        if (/^\d*$/.test(event.target.value)) {
             const newValues = [
                 ...newInput,
                 ...Array(8 - newInput.length).fill(""),
@@ -149,8 +146,8 @@ export default function TagReport() {
                 <input
                     type="text"
                     maxLength="8"
-                    // Split input into array?
-                    // Would be nice to use existing index system
+                    pattern="[0-9]*"
+                    inputMode="numeric"
                     onChange={(event) => handleChangeNormal(event)}
                     className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
                 ></input>
