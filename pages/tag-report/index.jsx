@@ -169,7 +169,9 @@ export default function TagReport() {
                 </div>
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
-                        <div className="hidden lg:visible">{TFAStyleInput}</div>
+                        <div className="invisible lg:visible">
+                            {TFAStyleInput}
+                        </div>
                         <div className="visible lg:hidden">{boxInput}</div>
                         <div className="mt-10 flex justify-center">
                             <button
