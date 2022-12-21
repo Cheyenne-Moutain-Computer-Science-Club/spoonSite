@@ -94,15 +94,19 @@ export default function TagReport() {
     // Make the first part it's own function with event and index params
     // Call the first function only for the normal input
     // Make a TFA function that calls the first function as well as the focus-specific code
-    function handleChangeNormal(event, index) {
-        const newValues = [...values];
-        const value = event.target.value;
-        if (/^[0-9]$/.test(value) || value === "") {
-            newValues[index] = value;
+    // These comments may be soon outdated ^^^
+    function handleChangeNormal(event) {
+        // For the normal input change handler, the entire input is event.target.value
+        const newInput = event.target.value;
+
+        if (/^[0-9]$/.test(newInput) || newInput === "") {
+            const newValues = [
+                ...newInput.split(""),
+                ...Array(8 - newInput.length).fill(""),
+            ];
             setValues(newValues);
         }
-
-        // const numFilled = values.filter((x) => x !== "").length;
+        console.log(values);
     }
 
     // Submit handler - publish data
@@ -148,7 +152,7 @@ export default function TagReport() {
                     maxLength="8"
                     // Split input into array?
                     // Would be nice to use existing index system
-                    onChange={(event) => handleChangeNormal(event, index)}
+                    onChange={(event) => handleChangeNormal(event)}
                     className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
                 ></input>
             </div>
