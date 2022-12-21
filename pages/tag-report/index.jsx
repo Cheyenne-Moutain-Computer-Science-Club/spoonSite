@@ -125,24 +125,29 @@ export default function TagReport() {
         </div>
     );
 
+    const boxInput = (
+        <div className="flex justify-center">
+            <input
+                type="text"
+                maxLength="8"
+                className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
+            ></input>
+        </div>
+    );
+
     return (
         <div>
             <NavBar />
             <div className="m-5">
                 <div className="bg-gradient-to-r from-orange-400 to-pink-400">
-                    <h1 className="ml-2 mb-10 bg-gray-900 pl-3 font-sans text-7xl font-semibold text-white">
+                    <h1 className="mb-11 ml-2 bg-gray-900 pl-3 font-sans text-5xl font-semibold text-white">
                         Tag Reporting
                     </h1>
                 </div>
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
                         <div className="hidden">{TFAStyleInput}</div>
-                        <div className="">
-                            <input
-                                type="text"
-                                className="w-200 rounded bg-gray-500 px-12 py-20 text-base font-semibold text-white"
-                            ></input>
-                        </div>
+                        <div className="">{boxInput}</div>
                         <div className="mt-10 flex justify-center">
                             <button
                                 type="submit"
