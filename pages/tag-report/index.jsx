@@ -60,7 +60,7 @@ export default function TagReport() {
             setShowModal(true);
         } else {
             // Run if tagger and victim are not tagged
-            //Change this to a modal, alert, confirmation message, etc.
+            // Change this to a modal, alert (not this kind), confirmation message, etc.
             alert("You have successfully tagged " + victimDoc.data().name);
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
@@ -169,8 +169,8 @@ export default function TagReport() {
                 </div>
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
-                        <div className="hidden">{TFAStyleInput}</div>
-                        <div className="">{boxInput}</div>
+                        <div className="hidden lg:visible">{TFAStyleInput}</div>
+                        <div className="visible lg:hidden">{boxInput}</div>
                         <div className="mt-10 flex justify-center">
                             <button
                                 type="submit"
