@@ -76,7 +76,7 @@ export default function TagReport() {
         }
     };
 
-    function handleChange(event, index) {
+    function handleChangeTFA(event, index) {
         const newValues = [...values];
         const value = event.target.value;
         if (/^[0-9]$/.test(value) || value === "") {
@@ -88,6 +88,21 @@ export default function TagReport() {
             const nextInput = document.getElementById(`input-${index + 1}`);
             nextInput.focus();
         }
+    }
+
+    // May be able to consolidate these two functions
+    // Make the first part it's own function with event and index params
+    // Call the first function only for the normal input
+    // Make a TFA function that calls the first function as well as the focus-specific code
+    function handleChangeNormal(event, index) {
+        const newValues = [...values];
+        const value = event.target.value;
+        if (/^[0-9]$/.test(value) || value === "") {
+            newValues[index] = value;
+            setValues(newValues);
+        }
+
+        // const numFilled = values.filter((x) => x !== "").length;
     }
 
     // Submit handler - publish data
@@ -116,7 +131,7 @@ export default function TagReport() {
                         type="text"
                         value={value}
                         id={`input-${index}`}
-                        onChange={(event) => handleChange(event, index)}
+                        onChange={(event) => handleChangeTFA(event, index)}
                         autoComplete="off"
                         className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white"
                     />
@@ -126,12 +141,20 @@ export default function TagReport() {
     );
 
     const boxInput = (
-        <div className="flex justify-center">
-            <input
-                type="text"
-                maxLength="8"
-                className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
-            ></input>
+        <div>
+            <div className="flex justify-center">
+                <input
+                    type="text"
+                    maxLength="8"
+                    // Split input into array?
+                    // Would be nice to use existing index system
+                    onChange={(event) => handleChangeNormal(event, index)}
+                    className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
+                ></input>
+            </div>
+            <h3 className="ml-52 mt-2 flex justify-center text-xs text-gray-400">
+                {values.filter((x) => x !== "").length} / 8
+            </h3>
         </div>
     );
 
