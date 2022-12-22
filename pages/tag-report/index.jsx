@@ -37,28 +37,19 @@ export default function TagReport() {
         );
         let victimSnap = await getDocs(queryVictim);
         let victimDoc = victimSnap.docs[0];
-        console.log(victimSnap);
-        console.log("Exists output: " + victimSnap.exists);
+        // console.log(victimSnap);
+        // console.log("Exists output: " + victimSnap.exists);
 
-        if (taggerDoc.data().outBy != 0) {
-            // Run if tagger is already tagged
-            setErrModalMsg(
-                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)"
-            );
-            setShowModal(true);
-        } else if (!(victimSnap.size > 0)) {
-            // Run if ID does not exist
-            setErrModalMsg(
-                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly."
-            );
-            // console.log(victimSnap.exists);
-            setShowModal(true);
-        } else if (victimDoc.data().outBy != 0) {
-            setErrModalMsg(
-                "It looks like you're trying to tag someone who is already tagged... Unfortunately that's not how this game works. Have a nice day!"
-            );
-            setShowModal(true);
-        } else {
+        try {
+            // Error handling:
+            if (taggerDoc.data().outBy != 0) {
+                throw "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)";
+            } else if (!(victimSnap.size > 0)) {
+                throw "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly.";
+            } else if (victimDoc.data().outBy != 0) {
+                throw "It looks like you're trying to tag someone who is already tagged... Unfortunately that's not how this game works. Have a nice day!";
+            }
+
             // Run if tagger and victim are not tagged
             // Change this to a modal, alert (not this kind), confirmation message, etc.
             alert("You have successfully tagged " + victimDoc.data().name);
@@ -74,6 +65,13 @@ export default function TagReport() {
             const victimRef = doc(db, "users", victimDoc.id);
             const taggerID = taggerDoc.data().id;
             await updateDoc(victimRef, { outBy: taggerID });
+
+            // Return true if successful (used for submission confirmation)
+            return true;
+        } catch (err) {
+            console.error(err);
+            setErrModalMsg(err);
+            setShowModal(true);
         }
     };
 
