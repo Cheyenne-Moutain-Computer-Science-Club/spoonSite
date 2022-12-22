@@ -116,9 +116,10 @@ export default function TagReport() {
         combinedValue = combinedValue.join("");
         // console.log(combinedValue);
 
-        // Publish data then recieve confirmation status
+        // Publish data then receive confirmation status
         const publishStatus = publishTagData(Number(combinedValue));
         if (publishStatus) {
+            // If publish is successful
             setValues(["", "", "", "", "", "", "", ""]);
         }
     };
