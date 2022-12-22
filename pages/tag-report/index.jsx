@@ -116,8 +116,11 @@ export default function TagReport() {
         combinedValue = combinedValue.join("");
         // console.log(combinedValue);
 
-        // TODO: Improve error handling
-        publishTagData(Number(combinedValue));
+        // Publish data then recieve confirmation status
+        const publishStatus = publishTagData(Number(combinedValue));
+        if (publishStatus) {
+            setValues(["", "", "", "", "", "", "", ""]);
+        }
     };
 
     // Reset handler - clear text fields
