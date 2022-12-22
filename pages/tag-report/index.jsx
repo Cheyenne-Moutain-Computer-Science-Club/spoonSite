@@ -43,24 +43,25 @@ export default function TagReport() {
         if (taggerDoc.data().outBy != 0) {
             // Run if tagger is already tagged
             setErrModalMsg(
-                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Unfortunately this is not something that you can do."
+                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)"
             );
             setShowModal(true);
         } else if (!(victimSnap.size > 0)) {
             // Run if ID does not exist
             setErrModalMsg(
-                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered all of the numbers properly."
+                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly."
             );
             // console.log(victimSnap.exists);
             setShowModal(true);
         } else if (victimDoc.data().outBy != 0) {
             setErrModalMsg(
-                "It looks like you're trying to tag someone who is already tagged... Unfortunately that is not how this game works. Have a nice day!"
+                "It looks like you're trying to tag someone who is already tagged... Unfortunately that's not how this game works. Have a nice day!"
             );
             setShowModal(true);
         } else {
             // Run if tagger and victim are not tagged
-            alert(3);
+            // Change this to a modal, alert (not this kind), confirmation message, etc.
+            alert("You have successfully tagged " + victimDoc.data().name);
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
@@ -76,7 +77,7 @@ export default function TagReport() {
         }
     };
 
-    function handleChange(event, index) {
+    function handleChangeTFA(event, index) {
         const newValues = [...values];
         const value = event.target.value;
         if (/^[0-9]$/.test(value) || value === "") {
@@ -88,6 +89,24 @@ export default function TagReport() {
             const nextInput = document.getElementById(`input-${index + 1}`);
             nextInput.focus();
         }
+
+        // console.log(values);
+    }
+
+    // This function handles the change of the textbox so the same state can be used as TFAStyle
+    function handleChangeNormal(event) {
+        // For the normal input change handler, the entire input is event.target.value
+        const newInput = event.target.value.split("");
+
+        if (/^\d*$/.test(event.target.value)) {
+            const newValues = [
+                ...newInput,
+                ...Array(8 - newInput.length).fill(""),
+            ];
+            setValues(newValues);
+        }
+
+        // console.log(values);
     }
 
     // Submit handler - publish data
@@ -116,7 +135,7 @@ export default function TagReport() {
                         type="text"
                         value={value}
                         id={`input-${index}`}
-                        onChange={(event) => handleChange(event, index)}
+                        onChange={(event) => handleChangeTFA(event, index)}
                         autoComplete="off"
                         className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white"
                     />
@@ -125,18 +144,40 @@ export default function TagReport() {
         </div>
     );
 
+    const boxInput = (
+        <div>
+            <div className="flex justify-center">
+                <input
+                    id="input-single"
+                    type="text"
+                    maxLength="8"
+                    pattern="[0-9]*"
+                    inputMode="numeric"
+                    onChange={(event) => handleChangeNormal(event)}
+                    className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
+                ></input>
+            </div>
+            <h3 className="ml-52 mt-2 flex justify-center text-xs text-gray-400">
+                {values.filter((x) => x !== "").length} / 8
+            </h3>
+        </div>
+    );
+
     return (
         <div>
             <NavBar />
             <div className="m-5">
                 <div className="bg-gradient-to-r from-orange-400 to-pink-400">
-                    <h1 className="ml-2 mb-10 bg-gray-900 pl-3 font-sans text-7xl font-semibold text-white">
+                    <h1 className="mb-11 ml-2 bg-gray-900 pl-3 font-sans text-5xl font-semibold text-white">
                         Tag Reporting
                     </h1>
                 </div>
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
-                        {TFAStyleInput}
+                        <div className="invisible lg:visible">
+                            {TFAStyleInput}
+                        </div>
+                        <div className="visible lg:hidden">{boxInput}</div>
                         <div className="mt-10 flex justify-center">
                             <button
                                 type="submit"
