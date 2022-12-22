@@ -89,6 +89,8 @@ export default function TagReport() {
             const nextInput = document.getElementById(`input-${index + 1}`);
             nextInput.focus();
         }
+
+        // console.log(values);
     }
 
     // This function handles the change of the textbox so the same state can be used as TFAStyle
@@ -103,6 +105,8 @@ export default function TagReport() {
             ];
             setValues(newValues);
         }
+
+        // console.log(values);
     }
 
     // Submit handler - publish data
@@ -144,6 +148,7 @@ export default function TagReport() {
         <div>
             <div className="flex justify-center">
                 <input
+                    id="input-single"
                     type="text"
                     maxLength="8"
                     pattern="[0-9]*"
