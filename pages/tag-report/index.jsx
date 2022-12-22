@@ -118,6 +118,7 @@ export default function TagReport() {
         combinedValue = combinedValue.join("");
         // console.log(combinedValue);
 
+        // TODO: Improve error handling
         publishTagData(Number(combinedValue));
     };
 
