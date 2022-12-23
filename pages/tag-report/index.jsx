@@ -162,6 +162,7 @@ export default function TagReport() {
                     pattern="[0-9]*"
                     inputMode="numeric"
                     onChange={(event) => handleChangeNormal(event)}
+                    autoComplete="off"
                     className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
                 ></input>
             </div>
