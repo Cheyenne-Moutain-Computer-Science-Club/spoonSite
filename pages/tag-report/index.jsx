@@ -12,6 +12,7 @@ import {
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
 import ErrorModal from "../../components/errorModal.jsx";
+import SuccessModal from "../../components/successModal.jsx";
 
 const db = getFirestore(app);
 
@@ -208,6 +209,7 @@ export default function TagReport() {
             {showModal
                 ? ErrorModal(() => setShowModal(false), errModalMsg)
                 : null}
+            {SuccessModal("Michael", 5)}
         </div>
     );
 }
