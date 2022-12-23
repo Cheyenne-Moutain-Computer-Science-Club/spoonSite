@@ -54,8 +54,6 @@ export default function TagReport() {
             }
 
             // Run if tagger and victim are not tagged
-            // Change this to a modal, alert (not this kind), confirmation message, etc.
-            // alert("You have successfully tagged " + victimDoc.data().name);
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
@@ -95,8 +93,6 @@ export default function TagReport() {
             const nextInput = document.getElementById(`input-${index + 1}`);
             nextInput.focus();
         }
-
-        // console.log(values);
     }
 
     // This function handles the change of the textbox so the same state can be used as TFAStyle
@@ -111,8 +107,6 @@ export default function TagReport() {
             ];
             setValues(newValues);
         }
-
-        // console.log(values);
     }
 
     // Submit handler - publish data
@@ -122,7 +116,6 @@ export default function TagReport() {
         // Set new combined value
         let combinedValue = values;
         combinedValue = combinedValue.join("");
-        // console.log(combinedValue);
 
         // Publish data then receive confirmation status
         const publishStatus = publishTagData(Number(combinedValue));
@@ -207,13 +200,7 @@ export default function TagReport() {
                     </form>
                 </div>
             </div>
-            {/* <button
-                className="mr-1 mb-1 rounded bg-pink-500 px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-pink-600"
-                type="button"
-                onClick={() => setShowModal(true)}
-            >
-                Open small modal
-            </button> */}
+
             {showErrModal
                 ? ErrorModal(() => setShowErrModal(false), errModalMsg)
                 : null}
@@ -225,7 +212,6 @@ export default function TagReport() {
                       successModalData[1]
                   )
                 : null}
-            {/* {SuccessModal("Michael", 5)} */}
         </div>
     );
 }
