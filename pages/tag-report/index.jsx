@@ -121,7 +121,10 @@ export default function TagReport() {
         const publishStatus = publishTagData(Number(combinedValue));
         if (publishStatus) {
             // If publish is successful
+
+            // Clear text fields
             setValues(["", "", "", "", "", "", "", ""]);
+            // Show success modal
             setShowSuccessModal(true);
         }
     };
