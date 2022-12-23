@@ -1,12 +1,21 @@
 import React from "react";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
 
 export default function SuccessModal(name, numberTagged) {
+    const { width, height } = useWindowSize();
+
     return (
         <>
             <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
                 <div className="relative my-6 mx-auto w-auto max-w-sm">
                     {/*content*/}
                     <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
+                        <Confetti
+                            width={width}
+                            height={height}
+                            tweenDuration={1}
+                        />
                         {/*header*/}
                         <div className="flex items-start justify-between rounded-t border-b border-solid border-slate-200 p-5">
                             <h3 className="text-3xl font-semibold">Bravo!</h3>
