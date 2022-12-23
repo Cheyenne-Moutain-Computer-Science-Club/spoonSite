@@ -18,7 +18,9 @@ const db = getFirestore(app);
 
 export default function TagReport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
-    const [showModal, setShowModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [successModalData, setSuccessModalData] = useState(Array(2));
+    const [showErrModal, setShowErrModal] = useState(false);
     const [errModalMsg, setErrModalMsg] = useState("An error ocurred");
 
     const { data: session } = useSession();
@@ -53,7 +55,7 @@ export default function TagReport() {
 
             // Run if tagger and victim are not tagged
             // Change this to a modal, alert (not this kind), confirmation message, etc.
-            alert("You have successfully tagged " + victimDoc.data().name);
+            // alert("You have successfully tagged " + victimDoc.data().name);
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
@@ -67,12 +69,17 @@ export default function TagReport() {
             const taggerID = taggerDoc.data().id;
             await updateDoc(victimRef, { outBy: taggerID });
 
+            // This is used for the success modal
+            setSuccessModalData([
+                victimDoc.data().name,
+                taggerDoc.data().tagged.length + 1, // Add 1 b/c length always returns 1 less than actual
+            ]);
             // Return true if successful (used for submission confirmation)
             return true;
         } catch (err) {
             console.error(err);
             setErrModalMsg(err);
-            setShowModal(true);
+            setShowErrModal(true);
         }
     };
 
@@ -122,6 +129,7 @@ export default function TagReport() {
         if (publishStatus) {
             // If publish is successful
             setValues(["", "", "", "", "", "", "", ""]);
+            setShowSuccessModal(true);
         }
     };
 
@@ -206,10 +214,18 @@ export default function TagReport() {
             >
                 Open small modal
             </button> */}
-            {showModal
-                ? ErrorModal(() => setShowModal(false), errModalMsg)
+            {showErrModal
+                ? ErrorModal(() => setShowErrModal(false), errModalMsg)
                 : null}
-            {SuccessModal("Michael", 5)}
+
+            {showSuccessModal
+                ? SuccessModal(
+                      () => setShowSuccessModal(false),
+                      successModalData[0],
+                      successModalData[1]
+                  )
+                : null}
+            {/* {SuccessModal("Michael", 5)} */}
         </div>
     );
 }

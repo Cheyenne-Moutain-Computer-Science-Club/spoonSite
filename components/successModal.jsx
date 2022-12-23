@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function SuccessModal(name, numberTagged) {
+export default function SuccessModal(closeHandler, name, numberTagged) {
     return (
         <>
             <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
@@ -19,8 +19,8 @@ export default function SuccessModal(name, numberTagged) {
                             <p className=" mb-2 text-lg leading-relaxed text-slate-500">
                                 You have successfully tagged&nbsp;
                                 <span className="font-bold">{name}!</span>
-                                <br className="my-3" />
-                                Number of people tagged:&nbsp;
+                                <br className="my-5" />
+                                Number of tags:&nbsp;
                                 <span className="font-bold">
                                     {numberTagged}
                                 </span>
@@ -33,7 +33,7 @@ export default function SuccessModal(name, numberTagged) {
                             <button
                                 className="mr-1 mb-1 rounded bg-indigo-600 px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-emerald-600"
                                 type="button"
-                                onClick={() => setShowModal(false)}
+                                onClick={closeHandler}
                             >
                                 OK
                             </button>
