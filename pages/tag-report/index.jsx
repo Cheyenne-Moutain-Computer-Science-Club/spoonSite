@@ -109,6 +109,11 @@ export default function TagReport() {
         }
     }
 
+    // Reset handler - clear text fields
+    const handleReset = () => {
+        setValues(["", "", "", "", "", "", "", ""]);
+    };
+
     // Submit handler - publish data
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -123,15 +128,10 @@ export default function TagReport() {
             // If publish is successful
 
             // Clear text fields
-            setValues(["", "", "", "", "", "", "", ""]);
+            handleReset();
             // Show success modal
             setShowSuccessModal(true);
         }
-    };
-
-    // Reset handler - clear text fields
-    const handleReset = () => {
-        setValues(["", "", "", "", "", "", "", ""]);
     };
 
     const TFAStyleInput = (
