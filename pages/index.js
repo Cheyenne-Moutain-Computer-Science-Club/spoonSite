@@ -32,14 +32,20 @@ export default function Home() {
 
                     <br className="my-5" />
 
-                    <div className="mx-32 my-10 flex rounded-xl border-2 border-neutral-300 bg-darkerblue-100 p-5">
+                    <div className="mx-32 my-10 rounded-xl border-2 border-neutral-300 bg-darkerblue-100 p-5">
                         <div className="grid grid-cols-4 gap-10">
-                            <div>{StatBox("Testing", 43, 1)}</div>
-                            <div className="col-span-2">
+                            <div className="h-full w-full">
+                                {StatBox("Testing", 43, 1)}
+                            </div>
+                            <div className="col-span-2 h-full w-full">
                                 {StatBox("Testing2", 44, 2)}
                             </div>
-                            <div>{StatBox("Testing3", 45, 1)}</div>
-                            <div>{StatBox("Testing4", 46, 1)}</div>
+                            <div className="h-full w-full">
+                                {StatBox("Testing3", 45, 1)}
+                            </div>
+                            <div className="h-full w-full">
+                                {StatBox("Testing4", 46, 1)}
+                            </div>
                         </div>
                     </div>
                 </div>
