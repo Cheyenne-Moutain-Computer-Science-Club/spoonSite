@@ -1,15 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { app } from "../public/_firebase.js";
-import { doc, getDoc } from "firebase/firestore";
-import {
-    query,
-    collection,
-    where,
-    getFirestore,
-    getDocs,
-    increment,
-} from "firebase/firestore";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
 import Footer from "../components/footer";
 import NavBar from "../components/navbar";
 import Link from "next/link";
