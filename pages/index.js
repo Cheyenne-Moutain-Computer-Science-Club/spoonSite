@@ -18,9 +18,18 @@ const getStats = async () => {
     return stats.data().usersOut;
 };
 
+const timeUntilEnd = () => {
+    const currentDate = new Date();
+    const endDate = new Date(Date.UTC(2023, 4, 20, 7, 0, 0, 0));
+    const dayDifference =
+        (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
+    return Math.round(dayDifference);
+};
+
 export default function Home() {
     const [stats, setStats] = useState(null);
 
+    // Update # of users in the game statistics
     useEffect(() => {
         getStats().then((data) => setStats(data));
     }, []);
@@ -68,7 +77,10 @@ export default function Home() {
                                     )}
                                 </div>
                                 <div className="h-full w-full">
-                                    {SingleBox("Days Remaining", 45)}
+                                    {SingleBox(
+                                        "Days Remaining",
+                                        timeUntilEnd()
+                                    )}
                                 </div>
                                 <div className="h-full w-full">
                                     {SingleBox("Coming soon", 0)}
