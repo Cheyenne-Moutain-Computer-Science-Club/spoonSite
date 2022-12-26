@@ -21,7 +21,7 @@ export default function Home() {
                             Let's be real. There's only one reason that you're
                             here...
                         </p>
-                        <button className="w-50 mt-5 rounded-md bg-indigo-600 py-3 px-8 text-xl font-medium text-white hover:bg-indigo-500">
+                        <button className="w-50 mt-5 rounded-md border-2 border-indigo-600 bg-indigo-600 py-3 px-8 text-xl font-medium text-white duration-150 hover:bg-transparent">
                             Tag Someone
                         </button>
                     </div>
