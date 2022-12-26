@@ -47,6 +47,9 @@ export default function Home() {
                                 <div className="h-full w-full">
                                     {StatBox("Testing4", 46, 1)}
                                 </div>
+                                <div className="col-span-3 h-full w-full">
+                                    {StatBox("Testing5", 47, 3)}
+                                </div>
                             </div>
                         </div>
                     </div>
