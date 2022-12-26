@@ -6,12 +6,24 @@ export default function Home() {
         <div className="min-h-screen">
             <NavBar />
             <div className="text-white">
-                <div className="mt-5 flex justify-center">
-                    <div className="flex flex-col justify-center text-center font-sans">
+                <div className="mt-5 flex flex-col justify-center">
+                    <div className="justify-center text-center font-sans">
                         <h2 className="font-semibold">
                             Cheyenne Mountain High School
                         </h2>
                         <h1 className="text-8xl font-extrabold">Spoon Game</h1>
+                    </div>
+
+                    <br className="temporaryBR my-10" />
+
+                    <div className="flex flex-col items-center justify-center">
+                        <p className="font-xs text-gray-300">
+                            Let's be real. There's only one reason that you're
+                            here...
+                        </p>
+                        <button className="w-50 mt-5 rounded-md bg-indigo-600 py-3 px-8 text-xl font-medium text-white hover:bg-indigo-500">
+                            Tag Someone
+                        </button>
                     </div>
                 </div>
             </div>
