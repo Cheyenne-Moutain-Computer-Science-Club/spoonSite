@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";

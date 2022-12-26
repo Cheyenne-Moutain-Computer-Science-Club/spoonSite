@@ -1,3 +1,15 @@
+import React from "react";
+import { useState, useEffect } from "react";
+import { app } from "../public/_firebase.js";
+import { doc, getDoc } from "firebase/firestore";
+import {
+    query,
+    collection,
+    where,
+    getFirestore,
+    getDocs,
+    increment,
+} from "firebase/firestore";
 import Footer from "../components/footer";
 import NavBar from "../components/navbar";
 import Link from "next/link";
@@ -5,7 +17,22 @@ import SingleBox from "../components/grid-boxes/singleBox";
 import DoubleBox from "../components/grid-boxes/doubleBox";
 import TripleBox from "../components/grid-boxes/tripleBox";
 
+const db = getFirestore(app);
+const totalPlayers = 350;
+
+const getStats = async () => {
+    const docRef = doc(db, "users", "global");
+    const stats = await getDoc(docRef);
+    return stats.data().usersOut;
+};
+
 export default function Home() {
+    const [stats, setStats] = useState(null);
+
+    useEffect(() => {
+        getStats().then((data) => setStats(data));
+    }, []);
+
     return (
         <div className="min-h-screen">
             <NavBar />
@@ -38,10 +65,15 @@ export default function Home() {
                         <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-7">
                             <div className="grid grid-cols-4 gap-10">
                                 <div className="h-full w-full">
-                                    {SingleBox("Total Players", 350)}
+                                    {SingleBox("Total Players", totalPlayers)}
                                 </div>
                                 <div className="col-span-2 h-full w-full">
-                                    {DoubleBox("Tagged", "Remaining", 100, 200)}
+                                    {DoubleBox(
+                                        "Tagged",
+                                        "Remaining",
+                                        stats,
+                                        totalPlayers - stats
+                                    )}
                                 </div>
                                 <div className="h-full w-full">
                                     {SingleBox("Days Remaining", 45)}
