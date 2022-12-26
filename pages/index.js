@@ -32,19 +32,21 @@ export default function Home() {
 
                     <br className="my-5" />
 
-                    <div className="mx-32 my-10 rounded-xl border-2 border-neutral-300 bg-darkerblue-100 p-5">
-                        <div className="grid grid-cols-4 gap-10">
-                            <div className="h-full w-full">
-                                {StatBox("Testing", 43, 1)}
-                            </div>
-                            <div className="col-span-2 h-full w-full">
-                                {StatBox("Testing2", 44, 2)}
-                            </div>
-                            <div className="h-full w-full">
-                                {StatBox("Testing3", 45, 1)}
-                            </div>
-                            <div className="h-full w-full">
-                                {StatBox("Testing4", 46, 1)}
+                    <div className="flex justify-center">
+                        <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-7">
+                            <div className="grid grid-cols-4 gap-10">
+                                <div className="h-full w-full">
+                                    {StatBox("Testing", 43, 1)}
+                                </div>
+                                <div className="col-span-2 h-full w-full">
+                                    {StatBox("Testing2", 44, 2)}
+                                </div>
+                                <div className="h-full w-full">
+                                    {StatBox("Testing3", 45, 1)}
+                                </div>
+                                <div className="h-full w-full">
+                                    {StatBox("Testing4", 46, 1)}
+                                </div>
                             </div>
                         </div>
                     </div>
