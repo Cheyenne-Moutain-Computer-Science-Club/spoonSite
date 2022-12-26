@@ -1,7 +1,9 @@
 import Footer from "../components/footer";
 import NavBar from "../components/navbar";
 import Link from "next/link";
-import StatBox from "../components/statBox";
+import SingleBox from "../components/grid-boxes/singleBox";
+import DoubleBox from "../components/grid-boxes/doubleBox";
+import TripleBox from "../components/grid-boxes/tripleBox";
 
 export default function Home() {
     return (
@@ -36,19 +38,19 @@ export default function Home() {
                         <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-7">
                             <div className="grid grid-cols-4 gap-10">
                                 <div className="h-full w-full">
-                                    {StatBox("Testing", 43, 1)}
+                                    {SingleBox("Total Players", 350)}
                                 </div>
                                 <div className="col-span-2 h-full w-full">
-                                    {StatBox("Testing2", 44, 2)}
+                                    {DoubleBox("Tagged", "Remaining", 100, 200)}
                                 </div>
                                 <div className="h-full w-full">
-                                    {StatBox("Testing3", 45, 1)}
+                                    {SingleBox("Days Remaining", 45)}
                                 </div>
                                 <div className="h-full w-full">
-                                    {StatBox("Testing4", 46, 1)}
+                                    {SingleBox("Coming soon", 0)}
                                 </div>
                                 <div className="col-span-3 h-full w-full">
-                                    {StatBox("Testing5", 47, 3)}
+                                    {TripleBox("Testing5", 47)}
                                 </div>
                             </div>
                         </div>
