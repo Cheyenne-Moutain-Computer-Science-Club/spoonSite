@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { useSession } from "next-auth/react";
@@ -9,6 +9,7 @@ import {
     where,
     getFirestore,
     getDocs,
+    increment,
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
 import ErrorModal from "../../components/errorModal.jsx";
@@ -43,12 +44,16 @@ export default function TagReport() {
         // console.log(victimSnap);
         // console.log("Exists output: " + victimSnap.exists);
 
+        // Ttry statement success status
+        let success = true;
         try {
             // Error handling:
             if (taggerDoc.data().outBy != 0) {
                 throw "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)";
             } else if (!(victimSnap.size > 0)) {
                 throw "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly.";
+            } else if (taggerDoc.data().id == victimDoc.data().id) {
+                throw "You can't tag yourself silly! Why are you even trying to do that? It's like you don't want to win.";
             } else if (victimDoc.data().outBy != 0) {
                 throw "It looks like you're trying to tag someone who is already tagged... Unfortunately that's not how this game works. Have a nice day!";
             }
@@ -66,18 +71,22 @@ export default function TagReport() {
             const victimRef = doc(db, "users", victimDoc.id);
             const taggerID = taggerDoc.data().id;
             await updateDoc(victimRef, { outBy: taggerID });
-
-            // This is used for the success modal
-            setSuccessModalData([
-                victimDoc.data().name,
-                taggerDoc.data().tagged.length + 1, // Add 1 b/c length always returns 1 less than actual
-            ]);
-            // Return true if successful (used for submission confirmation)
-            return true;
         } catch (err) {
+            success = false;
             console.error(err);
             setErrModalMsg(err);
             setShowErrModal(true);
+        } finally {
+            // Run only if try statement did not throw an error
+            if (success) {
+                // This is used for the success modal
+                setSuccessModalData([
+                    victimDoc.data().name,
+                    taggerDoc.data().tagged.length + 1, // Add 1 b/c length always returns 1 less than actual
+                ]);
+                // Return true if successful (used for submission confirmation)
+                return true;
+            }
         }
     };
 
@@ -115,7 +124,7 @@ export default function TagReport() {
     };
 
     // Submit handler - publish data
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Set new combined value
@@ -123,9 +132,14 @@ export default function TagReport() {
         combinedValue = combinedValue.join("");
 
         // Publish data then receive confirmation status
-        const publishStatus = publishTagData(Number(combinedValue));
+        const publishStatus = await publishTagData(Number(combinedValue));
         if (publishStatus) {
             // If publish is successful
+
+            // Increment tagged counter
+            updateDoc(doc(db, "users", "global"), {
+                usersOut: increment(1),
+            });
 
             // Clear text fields
             handleReset();
