@@ -1,12 +1,13 @@
 import Footer from "../components/footer";
 import NavBar from "../components/navbar";
-import Link from "next/Link";
+import Link from "next/link";
+import StatBox from "../components/statBox";
 
 export default function Home() {
     return (
         <div className="min-h-screen">
             <NavBar />
-            <div className="text-white">
+            <div className="m-5 text-white">
                 <div className="mt-5 flex flex-col justify-center">
                     <div className="justify-center text-center font-sans">
                         <h2 className="font-semibold">
@@ -15,7 +16,7 @@ export default function Home() {
                         <h1 className="text-8xl font-extrabold">Spoon Game</h1>
                     </div>
 
-                    <br className="temporaryBR my-10" />
+                    <br className="my-10" />
 
                     <div className="flex flex-col items-center justify-center">
                         <p className="font-xs text-gray-300">
@@ -27,6 +28,17 @@ export default function Home() {
                                 Tag Someone
                             </button>
                         </Link>
+                    </div>
+
+                    <br className="my-5" />
+
+                    <div className="grid grid-cols-4 gap-10">
+                        <div>{StatBox("Testing", 43)}</div>
+                        <div className="col-span-2">
+                            {StatBox("Testing2", 44)}
+                        </div>
+                        <div>{StatBox("Testing3", 45)}</div>
+                        <div>{StatBox("Testing4", 46)}</div>
                     </div>
                 </div>
             </div>
