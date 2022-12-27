@@ -26,6 +26,68 @@ const timeUntilEnd = () => {
     return Math.round(dayDifference);
 };
 
+const bigStats = (stats, totalPlayers) => {
+    return (
+        <div className="flex justify-center">
+            <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-8">
+                <div className="grid grid-cols-4 gap-2">
+                    <div className="h-full w-full">
+                        {SingleBox("Total Players", totalPlayers)}
+                    </div>
+                    <div className="col-span-2 h-full w-full">
+                        {DoubleBox(
+                            "Tagged",
+                            "Remaining",
+                            stats,
+                            totalPlayers - stats
+                        )}
+                    </div>
+                    <div className="h-full w-full">
+                        {SingleBox("Days Remaining", timeUntilEnd())}
+                    </div>
+                    <div className="h-full w-full">
+                        {SingleBox("Coming soon", 0)}
+                    </div>
+                    <div className="col-span-3 h-full w-full">
+                        {TripleBox("Testing5", 47)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+const mdStats = (stats, totalPlayers) => {
+    return (
+        <div className="flex justify-center">
+            <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-8">
+                <div className="grid grid-cols-4">
+                    <div className="h-full w-full">
+                        {SingleBox("Total Players", totalPlayers)}
+                    </div>
+                    <div className="col-span-2 h-full w-full">
+                        {DoubleBox(
+                            "Tagged",
+                            "Remaining",
+                            stats,
+                            totalPlayers - stats
+                        )}
+                    </div>
+                    <div className="h-full w-full">
+                        {SingleBox("Days Remaining", timeUntilEnd())}
+                    </div>
+                    <div className="h-full w-full">
+                        {SingleBox("Coming soon", 0)}
+                    </div>
+                    <div className="col-span-3 h-full w-full">
+                        {TripleBox("Testing5", 47)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 export default function Home() {
     const [stats, setStats] = useState(null);
 
@@ -45,9 +107,7 @@ export default function Home() {
                         </h2>
                         <h1 className="text-8xl font-extrabold">Spoon Game</h1>
                     </div>
-
                     <br className="my-10" />
-
                     <div className="flex flex-col items-center justify-center">
                         <p className="font-xs text-gray-300">
                             Let's be real. There's only one reason that you're
@@ -59,37 +119,13 @@ export default function Home() {
                             </button>
                         </Link>
                     </div>
-
                     <br className="my-5" />
 
-                    <div className="flex justify-center">
-                        <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-7">
-                            <div className="grid grid-cols-4 gap-10">
-                                <div className="h-full w-full">
-                                    {SingleBox("Total Players", totalPlayers)}
-                                </div>
-                                <div className="col-span-2 h-full w-full">
-                                    {DoubleBox(
-                                        "Tagged",
-                                        "Remaining",
-                                        stats,
-                                        totalPlayers - stats
-                                    )}
-                                </div>
-                                <div className="h-full w-full">
-                                    {SingleBox(
-                                        "Days Remaining",
-                                        timeUntilEnd()
-                                    )}
-                                </div>
-                                <div className="h-full w-full">
-                                    {SingleBox("Coming soon", 0)}
-                                </div>
-                                <div className="col-span-3 h-full w-full">
-                                    {TripleBox("Testing5", 47)}
-                                </div>
-                            </div>
-                        </div>
+                    <div className="hidden lg:block">
+                        {bigStats(stats, totalPlayers)}
+                    </div>
+                    <div className="hidden md:block lg:hidden">
+                        {mdStats(stats, totalPlayers)}
                     </div>
                 </div>
             </div>
