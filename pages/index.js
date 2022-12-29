@@ -141,8 +141,8 @@ export default function Home() {
                     <br className="my-10" />
                     <div className="flex flex-col items-center justify-center">
                         <p className="font-xs text-gray-300">
-                            Let's be real. There's only one reason that you're
-                            here...
+                            Let&lsquo;s be real. There&lsquo;s only one reason
+                            that you&lsquo;re here...
                         </p>
                         <Link href="/tag-report">
                             <button className="w-50 mt-5 rounded-md border-2 border-indigo-600 bg-indigo-600 py-3 px-8 text-xl font-medium text-white duration-150 hover:bg-transparent">
