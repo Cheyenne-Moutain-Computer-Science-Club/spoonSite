@@ -60,8 +60,8 @@ const bigStats = (stats, totalPlayers) => {
 const mdStats = (stats, totalPlayers) => {
     return (
         <div className="flex justify-center">
-            <div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-8">
-                <div className="grid grid-cols-4">
+            <div className="mind-w-max mx-32 my-10 max-w-xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 py-5 pl-5 pr-8">
+                <div className="grid grid-cols-4 gap-5">
                     <div className="h-full w-full">
                         {SingleBox("Total Players", totalPlayers)}
                     </div>
