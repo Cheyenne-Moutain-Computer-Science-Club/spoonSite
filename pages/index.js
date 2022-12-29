@@ -88,6 +88,8 @@ const mdStats = (stats, totalPlayers) => {
     );
 };
 
+const smStats = (stats, totalPlayers) => {};
+
 export default function Home() {
     const [stats, setStats] = useState(null);
 
@@ -126,6 +128,9 @@ export default function Home() {
                     </div>
                     <div className="hidden md:block lg:hidden">
                         {mdStats(stats, totalPlayers)}
+                    </div>
+                    <div className="block md:hidden">
+                        {smStats(stats, totalPlayers)}
                     </div>
                 </div>
             </div>

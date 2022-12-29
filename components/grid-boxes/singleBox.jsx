@@ -3,7 +3,7 @@ import React from "react";
 
 export default function SingleBox(stat, num) {
     return (
-        <div className="h-24 w-24 rounded-3xl bg-gray-800 shadow-xl lg:h-40 lg:w-40">
+        <div className="md:h-24 md:w-24 rounded-3xl bg-gray-800 shadow-xl lg:h-40 lg:w-40">
             <div className="flex flex-col p-4">
                 <div>
                     <h1 className="text-2xl font-black lg:text-5xl">{num}</h1>
