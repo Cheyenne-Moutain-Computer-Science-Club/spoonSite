@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
-//import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { app } from "../../lib/firebase.js";
 import { useUserData } from "../../lib/hooks.js";
 
@@ -11,15 +11,19 @@ import {
     where,
     getFirestore,
     getDocs,
+    increment,
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
-import ErrorModal from "../../components/errorModal.jsx";
+import ErrorModal from "../../components/modals/errorModal.jsx";
+import SuccessModal from "../../components/modals/successModal.jsx";
 
 const db = getFirestore(app);
 
 export default function TagReport() {
     const [values, setValues] = useState(["", "", "", "", "", "", "", ""]);
-    const [showModal, setShowModal] = useState(false);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [successModalData, setSuccessModalData] = useState(Array(2));
+    const [showErrModal, setShowErrModal] = useState(false);
     const [errModalMsg, setErrModalMsg] = useState("An error ocurred");
 
     // Session
@@ -41,32 +45,23 @@ export default function TagReport() {
         let victimSnap = await getDocs(queryVictim);
         let victimDoc = victimSnap.docs[0];
         // console.log(victimSnap);
+        // console.log("Exists output: " + victimSnap.exists);
 
-        if (taggerDoc.data().outBy != 0) {
-            // Run if tagger is already tagged
-            setErrModalMsg(
-                "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Unfortunately this is not something that you can do."
-            );
-            setShowModal(true);
-        } else if (!(victimSnap.size > 0)) {
-            // Run if ID does not exist
-            setErrModalMsg(
-                "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered all of the numbers properly."
-            );
-            // console.log(victimSnap.exists);
-            setShowModal(true);
-        } else if (victimDoc.data().outBy != 0) {
-            setErrModalMsg(
-                "It looks like you're trying to tag someone who is already tagged... Unfortunately that is not how this game works. Have a nice day!"
-            );
-            setShowModal(true);
-        } else {
+        // Try statement success status
+        let success = true;
+        try {
+            // Error handling:
+            if (taggerDoc.data().outBy != 0) {
+                throw "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)";
+            } else if (!(victimSnap.size > 0)) {
+                throw "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly.";
+            } else if (taggerDoc.data().id == victimDoc.data().id) {
+                throw "You can't tag yourself silly! Why are you even trying to do that? It's like you don't want to win.";
+            } else if (victimDoc.data().outBy != 0) {
+                throw "It looks like you're trying to tag someone who is already tagged... Unfortunately that's not how this game works. Have a nice day!";
+            }
+
             // Run if tagger and victim are not tagged
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            // ADD SOME CONFIRMATION HERE
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
             // Append victim to tagger's "kill list"
             const taggerRef = doc(db, "users", taggerDoc.id);
             const newKillList = [...taggerDoc.data().tagged, uuid];
@@ -79,10 +74,26 @@ export default function TagReport() {
             const victimRef = doc(db, "users", victimDoc.id);
             const taggerID = taggerDoc.data().id;
             await updateDoc(victimRef, { outBy: taggerID });
+        } catch (err) {
+            success = false;
+            console.error(err);
+            setErrModalMsg(err);
+            setShowErrModal(true);
+        } finally {
+            // Run only if try statement did not throw an error
+            if (success) {
+                // This is used for the success modal
+                setSuccessModalData([
+                    victimDoc.data().name,
+                    taggerDoc.data().tagged.length + 1, // Add 1 b/c length always returns 1 less than actual
+                ]);
+                // Return true if successful (used for submission confirmation)
+                return true;
+            }
         }
     };
 
-    function handleChange(event, index) {
+    function handleChangeTFA(event, index) {
         const newValues = [...values];
         const value = event.target.value;
         if (/^[0-9]$/.test(value) || value === "") {
@@ -96,21 +107,48 @@ export default function TagReport() {
         }
     }
 
+    // This function handles the change of the textbox so the same state can be used as TFAStyle
+    function handleChangeNormal(event) {
+        // For the normal input change handler, the entire input is event.target.value
+        const newInput = event.target.value.split("");
+
+        if (/^\d*$/.test(event.target.value)) {
+            const newValues = [
+                ...newInput,
+                ...Array(8 - newInput.length).fill(""),
+            ];
+            setValues(newValues);
+        }
+    }
+
+    // Reset handler - clear text fields
+    const handleReset = () => {
+        setValues(["", "", "", "", "", "", "", ""]);
+    };
+
     // Submit handler - publish data
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Set new combined value
         let combinedValue = values;
         combinedValue = combinedValue.join("");
-        // console.log(combinedValue);
 
-        publishTagData(Number(combinedValue));
-    };
+        // Publish data then receive confirmation status
+        const publishStatus = await publishTagData(Number(combinedValue));
+        if (publishStatus) {
+            // If publish is successful
 
-    // Reset handler - clear text fields
-    const handleReset = () => {
-        setValues(["", "", "", "", "", "", "", ""]);
+            // Increment tagged counter
+            updateDoc(doc(db, "users", "global"), {
+                usersOut: increment(1),
+            });
+
+            // Clear text fields
+            handleReset();
+            // Show success modal
+            setShowSuccessModal(true);
+        }
     };
 
     const TFAStyleInput = (
@@ -122,7 +160,7 @@ export default function TagReport() {
                         type="text"
                         value={value}
                         id={`input-${index}`}
-                        onChange={(event) => handleChange(event, index)}
+                        onChange={(event) => handleChangeTFA(event, index)}
                         autoComplete="off"
                         className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white"
                     />
@@ -131,18 +169,41 @@ export default function TagReport() {
         </div>
     );
 
+    const boxInput = (
+        <div>
+            <div className="flex justify-center">
+                <input
+                    id="input-single"
+                    type="text"
+                    maxLength="8"
+                    pattern="[0-9]*"
+                    inputMode="numeric"
+                    onChange={(event) => handleChangeNormal(event)}
+                    autoComplete="off"
+                    className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
+                ></input>
+            </div>
+            <h3 className="ml-52 mt-2 flex justify-center text-xs text-gray-400">
+                {values.filter((x) => x !== "").length} / 8
+            </h3>
+        </div>
+    );
+
     return (
         <div>
             <NavBar />
             <div className="m-5">
                 <div className="bg-gradient-to-r from-orange-400 to-pink-400">
-                    <h1 className="ml-2 mb-10 bg-gray-900 pl-3 font-sans text-7xl font-semibold text-white">
+                    <h1 className="mb-11 ml-2 bg-gray-900 pl-3 font-sans text-5xl font-semibold text-white">
                         Tag Reporting
                     </h1>
                 </div>
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
-                        {TFAStyleInput}
+                        <div className="invisible lg:visible">
+                            {TFAStyleInput}
+                        </div>
+                        <div className="visible lg:hidden">{boxInput}</div>
                         <div className="mt-10 flex justify-center">
                             <button
                                 type="submit"
@@ -160,15 +221,17 @@ export default function TagReport() {
                     </form>
                 </div>
             </div>
-            {/* <button
-                className="mr-1 mb-1 rounded bg-pink-500 px-6 py-3 text-sm font-bold uppercase text-white shadow outline-none transition-all duration-150 ease-linear hover:shadow-lg focus:outline-none active:bg-pink-600"
-                type="button"
-                onClick={() => setShowModal(true)}
-            >
-                Open small modal
-            </button> */}
-            {showModal
-                ? ErrorModal(() => setShowModal(false), errModalMsg)
+
+            {showErrModal
+                ? ErrorModal(() => setShowErrModal(false), errModalMsg)
+                : null}
+
+            {showSuccessModal
+                ? SuccessModal(
+                      () => setShowSuccessModal(false),
+                      successModalData[0],
+                      successModalData[1]
+                  )
                 : null}
         </div>
     );
