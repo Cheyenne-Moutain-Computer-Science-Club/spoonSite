@@ -12,8 +12,8 @@ import {
     increment,
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
-import ErrorModal from "../../components/errorModal.jsx";
-import SuccessModal from "../../components/successModal.jsx";
+import ErrorModal from "../../components/modals/errorModal.jsx";
+import SuccessModal from "../../components/modals/successModal.jsx";
 
 const db = getFirestore(app);
 

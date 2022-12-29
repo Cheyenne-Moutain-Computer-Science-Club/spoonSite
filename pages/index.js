@@ -46,7 +46,7 @@ const bigStats = (stats, totalPlayers) => {
                         {SingleBox("Days Remaining", timeUntilEnd())}
                     </div>
                     <div className="h-full w-full">
-                        {SingleBox("Coming soon", 0)}
+                        {SingleBox("Coming soon...", "NaN")}
                     </div>
                     <div className="col-span-3 h-full w-full">
                         {TripleBox("Testing5", 47)}
@@ -77,7 +77,7 @@ const mdStats = (stats, totalPlayers) => {
                         {SingleBox("Days Remaining", timeUntilEnd())}
                     </div>
                     <div className="h-full w-full">
-                        {SingleBox("Coming soon", 0)}
+                        {SingleBox("Coming soon...", "NaN")}
                     </div>
                     <div className="col-span-3 h-full w-full">
                         {TripleBox("Testing5", 47)}
@@ -88,7 +88,36 @@ const mdStats = (stats, totalPlayers) => {
     );
 };
 
-const smStats = (stats, totalPlayers) => {};
+const smStats = (stats, totalPlayers) => {
+    return (
+        <div className="flex justify-center">
+            <div className="my-10">
+                <div className="flex flex-col gap-20">
+                    <div className="h-full w-full">
+                        {SingleBox("Total Players", totalPlayers)}
+                    </div>
+                    <div className="col-span-2 h-full w-full">
+                        {DoubleBox(
+                            "Tagged",
+                            "Remaining",
+                            stats,
+                            totalPlayers - stats
+                        )}
+                    </div>
+                    <div className="h-full w-full">
+                        {SingleBox("Days Remaining", timeUntilEnd())}
+                    </div>
+                    <div className="h-full w-full">
+                        {SingleBox("Coming soon...", "NaN")}
+                    </div>
+                    <div className="col-span-3 h-full w-full">
+                        {TripleBox("Testing5", 47)}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
 export default function Home() {
     const [stats, setStats] = useState(null);
