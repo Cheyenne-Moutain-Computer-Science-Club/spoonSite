@@ -7,12 +7,12 @@ export default function Rules() {
             <NavBar />
             <div className="m-5 leading-8 tracking-wider text-gray-300">
                 <h1 className="text-3xl font-black">Rules</h1>
-                <br />
-                <p>
+                <br className="my-4" />
+                <p className="mx-48 font-semibold">
                     All rules are made to protect student safety, learning, and
                     privacy. The rules are, but not limited to the following:
                 </p>
-                <ol className="mx-10 my-5 list-decimal space-y-8 marker:font-black marker:text-white">
+                <ol className="mx-56 my-5 list-decimal space-y-8 marker:font-black marker:text-white">
                     <li className="underline">
                         All school rules listed in the student handbook apply to
                         this game.
