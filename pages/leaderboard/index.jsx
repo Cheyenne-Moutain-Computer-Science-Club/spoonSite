@@ -12,11 +12,12 @@ import {
 } from "firebase/firestore";
 import PersonCard from "../../components/personCard";
 import PersonRow from "../../components/personRow";
-import { app } from "../../public/_firebase.js";
+import { app } from "../../lib/firebase.js";
+import AuthCheck from "../../components/AuthCheck";
 
 const db = getFirestore(app);
 
-// 	where("__name__", "!=", "global"),
+// where("__name__", "!=", "global"),
 const q = query(collection(db, "users"), orderBy("score", "desc"));
 
 const getData = async () => {
@@ -30,6 +31,7 @@ const getData = async () => {
 
 export default function LeaderboardPage() {
 	const [data, setData] = useState(null);
+
 	useEffect(() => {
 		// Fetching Data on Initial Load
 		getData().then((data) => setData(data));
@@ -55,7 +57,7 @@ export default function LeaderboardPage() {
 	});
 
 	return (
-		<div>
+		<>
 			<NavBar />
 			<div>
 				<div className="container mx-auto mt-4">
@@ -64,23 +66,13 @@ export default function LeaderboardPage() {
 				<div className="container mx-auto mt-4">{rows}</div>
 			</div>
 			<Footer />
-		</div>
+		</>
 	);
 }
 
 export async function getServerSideProps(context) {
-	const session = await getSession(context);
-
-	if (!session) {
-		return {
-			redirect: {
-				destination: "/",
-				permanent: false,
-			},
-		};
-	}
-
+	// const session = await getSession(context);
 	return {
-		props: { session },
+		props: { a: null },
 	};
 }
