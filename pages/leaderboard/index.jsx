@@ -1,5 +1,4 @@
 import NavBar from "../../components/navbar";
-import { getSession } from "next-auth/react";
 import Footer from "../../components/footer";
 import { useState, useEffect } from "react";
 import {
@@ -13,11 +12,8 @@ import {
 import PersonCard from "../../components/personCard";
 import PersonRow from "../../components/personRow";
 import { app } from "../../lib/firebase.js";
-import AuthCheck from "../../components/AuthCheck";
-
 const db = getFirestore(app);
 
-// where("__name__", "!=", "global"),
 const q = query(collection(db, "users"), orderBy("score", "desc"));
 
 const getData = async () => {
