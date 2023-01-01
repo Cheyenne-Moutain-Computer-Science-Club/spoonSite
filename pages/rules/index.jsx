@@ -1,13 +1,14 @@
 import NavBar from "../../components/navbar";
 import Footer from "../../components/footer";
+import PageTitle from "../../components/pageTitle";
 
 export default function Rules() {
     return (
         <div>
             <NavBar />
-            <div className="m-5 leading-8 tracking-wider text-gray-300">
-                <h1 className="text-3xl font-black">Rules</h1>
-                <br className="my-4" />
+            <div className="mx-5 mt-2 mb-5 leading-8 tracking-wider text-gray-200">
+                <div className="mt-5 ml-7">{PageTitle("Rules")}</div>
+                <br className="my-3" />
                 <p className="mx-48 font-semibold">
                     All rules are made to protect student safety, learning, and
                     privacy. The rules are, but not limited to the following:

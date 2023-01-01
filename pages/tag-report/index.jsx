@@ -12,6 +12,7 @@ import {
     increment,
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
+import PageTitle from "../../components/pageTitle.jsx";
 import ErrorModal from "../../components/modals/errorModal.jsx";
 import SuccessModal from "../../components/modals/successModal.jsx";
 
@@ -189,18 +190,40 @@ export default function TagReport() {
     return (
         <div>
             <NavBar />
-            <div className="m-5">
-                <div className="bg-gradient-to-r from-orange-400 to-pink-400">
-                    <h1 className="mb-11 ml-2 bg-gray-900 pl-3 font-sans text-5xl font-semibold text-white">
-                        Tag Reporting
-                    </h1>
+            <div className="mx-5 mt-2 mb-5">
+                <div className="">{PageTitle("Tag Reporting")}</div>
+                <br className="my-2" />
+                <div className="ml-8 w-7/12 max-w-2xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 p-3">
+                    <h3 className="text-gray-200 ">Some quick instructions:</h3>
+                    <hr />
+                    <ol className="ml-16 list-disc text-gray-300">
+                        <li className="">
+                            Ensure that you have read{" "}
+                            <a
+                                className="text-blue-500 underline"
+                                href="/rules"
+                            >
+                                the rules
+                            </a>
+                        </li>
+                        <li>
+                            Enter the 8-digit number from your victim's ID card
+                            into the box
+                            <span className="hidden lg:inline-block">es</span>
+                            &nbsp;below, then select "Submit"
+                        </li>
+                        <li className="text-amber-500">
+                            <span className="font-extrabold">Do not</span>
+                            &nbsp;attempt to tag someone unless you have
+                            legitimately obtained their ID card
+                        </li>
+                    </ol>
                 </div>
+                <br className="my-3" />
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
-                        <div className="invisible lg:visible">
-                            {TFAStyleInput}
-                        </div>
-                        <div className="visible lg:hidden">{boxInput}</div>
+                        <div className="hidden lg:block">{TFAStyleInput}</div>
+                        <div className="block lg:hidden">{boxInput}</div>
                         <div className="mt-10 flex justify-center">
                             <button
                                 type="submit"
