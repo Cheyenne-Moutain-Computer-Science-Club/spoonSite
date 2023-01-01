@@ -3,7 +3,7 @@ import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import { app } from "../../lib/firebase.js";
 import { useUserData } from "../../lib/hooks.js";
-import AuthCheck from "../../components/authCheck";
+import AuthCheck from "../../components/AuthCheck";
 import {
 	query,
 	collection,

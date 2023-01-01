@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../lib/context";
 import Router from "next/router";
+import { signIn } from "../lib/auth";
 
 // Component's children only shown to logged-in users
 export default function AuthCheck(props) {
