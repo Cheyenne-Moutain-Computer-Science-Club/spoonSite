@@ -12,6 +12,7 @@ import {
     increment,
 } from "firebase/firestore";
 import NavBar from "../../components/navbar";
+import Footer from "../../components/footer.jsx";
 import PageTitle from "../../components/pageTitle.jsx";
 import ErrorModal from "../../components/modals/errorModal.jsx";
 import SuccessModal from "../../components/modals/successModal.jsx";
@@ -253,6 +254,8 @@ export default function TagReport() {
                       successModalData[1]
                   )
                 : null}
+
+            <Footer />
         </div>
     );
 }
