@@ -10,12 +10,11 @@ import DoubleBox from "../components/grid-boxes/doubleBox";
 import TripleBox from "../components/grid-boxes/tripleBox";
 
 const db = getFirestore(app);
-const totalPlayers = 350;
 
 const getStats = async () => {
 	const docRef = doc(db, "users", "global");
 	const stats = await getDoc(docRef);
-	return stats.data().usersOut;
+	return [stats.data().usersOut, stats.data().activeIds.length];
 };
 
 const timeUntilEnd = () => {
@@ -120,7 +119,7 @@ const smStats = (stats, totalPlayers) => {
 };
 
 export default function Home() {
-	const [stats, setStats] = useState(null);
+	const [stats, setStats] = useState(0);
 
 	// Update # of users in the game statistics
 	useEffect(() => {
@@ -153,13 +152,16 @@ export default function Home() {
 					<br className="my-5" />
 
 					<div className="hidden lg:block">
-						{bigStats(stats, totalPlayers)}
+						{/* {bigStats(stats, totalPlayers)} */}
+						{bigStats(stats[0], stats[1])}
 					</div>
 					<div className="hidden md:block lg:hidden">
-						{mdStats(stats, totalPlayers)}
+						{/* {mdStats(stats, totalPlayers)} */}
+						{mdStats(stats[0], stats[1])}
 					</div>
 					<div className="block md:hidden">
-						{smStats(stats, totalPlayers)}
+						{/* {smStats(stats, totalPlayers)} */}
+						{smStats(stats[0], stats[1])}
 					</div>
 				</div>
 			</div>
