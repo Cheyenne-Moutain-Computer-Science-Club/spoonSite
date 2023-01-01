@@ -130,7 +130,7 @@ export default function Home() {
     return (
         <div className="min-h-screen">
             <NavBar />
-            <div className="m-5 text-white">
+            <div className="mx-5 mt-5 text-white">
                 <div className="mt-5 flex flex-col justify-center">
                     <div className="justify-center text-center font-sans">
                         <h2 className="font-semibold">
