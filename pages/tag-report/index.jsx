@@ -189,52 +189,50 @@ export default function TagReport() {
 	);
 
 	return (
-		<AuthCheck>
-			<div>
-				<NavBar />
-				<div className="m-5">
-					<div className="bg-gradient-to-r from-orange-400 to-pink-400">
-						<h1 className="mb-11 ml-2 bg-gray-900 pl-3 font-sans text-5xl font-semibold text-white">
-							Tag Reporting
-						</h1>
-					</div>
-					<div>
-						<form onSubmit={handleSubmit} onReset={handleReset}>
-							<div className="invisible lg:visible">
-								{TFAStyleInput}
-							</div>
-							<div className="visible lg:hidden">{boxInput}</div>
-							<div className="mt-10 flex justify-center">
-								<button
-									type="submit"
-									className=" rounded-md bg-indigo-600 py-2 px-8 text-base text-white hover:bg-indigo-500"
-								>
-									Submit
-								</button>
-								<button
-									type="reset"
-									className="ml-7 rounded-md bg-red-500 py-2 px-9 text-base text-white hover:bg-red-400"
-								>
-									Reset
-								</button>
-							</div>
-						</form>
-					</div>
+		<div>
+			<NavBar />
+			<div className="m-5">
+				<div className="bg-gradient-to-r from-orange-400 to-pink-400">
+					<h1 className="mb-11 ml-2 bg-gray-900 pl-3 font-sans text-5xl font-semibold text-white">
+						Tag Reporting
+					</h1>
 				</div>
-
-				{showErrModal
-					? ErrorModal(() => setShowErrModal(false), errModalMsg)
-					: null}
-
-				{showSuccessModal
-					? SuccessModal(
-							() => setShowSuccessModal(false),
-							successModalData[0],
-							successModalData[1]
-					  )
-					: null}
+				<div>
+					<form onSubmit={handleSubmit} onReset={handleReset}>
+						<div className="invisible lg:visible">
+							{TFAStyleInput}
+						</div>
+						<div className="visible lg:hidden">{boxInput}</div>
+						<div className="mt-10 flex justify-center">
+							<button
+								type="submit"
+								className=" rounded-md bg-indigo-600 py-2 px-8 text-base text-white hover:bg-indigo-500"
+							>
+								Submit
+							</button>
+							<button
+								type="reset"
+								className="ml-7 rounded-md bg-red-500 py-2 px-9 text-base text-white hover:bg-red-400"
+							>
+								Reset
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
-		</AuthCheck>
+
+			{showErrModal
+				? ErrorModal(() => setShowErrModal(false), errModalMsg)
+				: null}
+
+			{showSuccessModal
+				? SuccessModal(
+						() => setShowSuccessModal(false),
+						successModalData[0],
+						successModalData[1]
+				  )
+				: null}
+		</div>
 	);
 }
 
