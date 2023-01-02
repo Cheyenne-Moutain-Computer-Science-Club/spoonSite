@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next-auth/firebase-adapter": "^1.0.1",
     "@next/font": "^13.1.1",
     "firebase-tools": "^11.17.0",
     "next": "13.0.5",
