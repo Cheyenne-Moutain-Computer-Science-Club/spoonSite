@@ -1,5 +1,4 @@
 import NavBar from "../../components/navbar";
-import { getSession } from "next-auth/react";
 import Footer from "../../components/footer";
 import { useState, useEffect } from "react";
 import {
