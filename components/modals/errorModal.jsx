@@ -17,7 +17,7 @@ export default function ErrorModal(closeHandler, message) {
                                 {message}
                             </p>
                             <img
-                                src={"error.png"}
+                                src={"statusIndicators/error.png"}
                                 alt="Ope"
                                 className="h-32 w-32"
                             />

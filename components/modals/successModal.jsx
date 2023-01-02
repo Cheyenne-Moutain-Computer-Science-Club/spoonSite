@@ -14,7 +14,7 @@ export default function SuccessModal(closeHandler, name, numberTagged) {
                         {/*body*/}
                         <div className="relative flex-auto p-6">
                             <div className="flex justify-center">
-                                <img className="w-56" src="tick2.gif" />
+                                <img className="w-56" src="statusIndicators/tick2.gif" />
                             </div>
                             <p className=" mb-2 text-lg leading-relaxed text-slate-500">
                                 You have successfully tagged&nbsp;

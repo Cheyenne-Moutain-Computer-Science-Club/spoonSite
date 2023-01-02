@@ -1,6 +1,6 @@
 export default function Footer() {
     return (
-        <footer className="relative mt-28 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
+        <footer className="mt- relative rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
                 <a
                     href="https://flowbite.com/"

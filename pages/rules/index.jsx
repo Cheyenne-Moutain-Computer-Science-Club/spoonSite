@@ -2,19 +2,22 @@ import NavBar from "../../components/navbar";
 import Footer from "../../components/footer";
 import PageTitle from "../../components/pageTitle";
 
+const emphasis =
+    "underline decoration-blue-500 decoration-2 underline-offset-4";
+
 export default function Rules() {
     return (
         <div>
             <NavBar />
-            <div className="mx-5 mt-2 mb-5 leading-8 tracking-wider text-gray-200">
+            <div className="mx-5 mt-2 mb-5 text-lg leading-8 tracking-wider text-gray-300">
                 <div className="mt-5 ml-7">{PageTitle("Rules")}</div>
                 <br className="my-3" />
-                <p className="mx-48 font-semibold">
+                <p className="mx-48 font-semibold text-gray-200">
                     All rules are made to protect student safety, learning, and
                     privacy. The rules are, but not limited to the following:
                 </p>
                 <ol className="mx-56 my-5 list-decimal space-y-8 marker:font-black marker:text-white">
-                    <li className="underline">
+                    <li className={emphasis}>
                         All school rules listed in the student handbook apply to
                         this game.
                     </li>
@@ -22,7 +25,7 @@ export default function Rules() {
                         Gameplay areas:
                         <ul className="ml-5 list-disc space-y-2">
                             <li>
-                                <span className="underline">
+                                <span className={emphasis}>
                                     The following areas are considered “safe
                                     zones”
                                 </span>
@@ -35,7 +38,7 @@ export default function Rules() {
                                 building, except the stadium.
                             </li>
                             <li>
-                                <span className="underline">
+                                <span className={emphasis}>
                                     Gameplay will commence in these areas:
                                 </span>
                                 &nbsp;hallways, cafeteria, in the courtyard, in
@@ -53,9 +56,7 @@ export default function Rules() {
                             <li>
                                 Classrooms, library, computer lab, and Kiva
                                 are&nbsp;
-                                <span className="underline">
-                                    not safe zones
-                                </span>
+                                <span className={emphasis}>not safe zones</span>
                                 &nbsp;before school (up to the beginning of 1st
                                 period @ 8:25 am) and after school (starting @
                                 3:45 pm) unless it is a Zero-Hour classroom.
@@ -70,7 +71,7 @@ export default function Rules() {
                         Spoon related rules:
                         <ul className="ml-5 list-disc space-y-2">
                             <li>
-                                <span className="underline">
+                                <span className={emphasis}>
                                     Spoons must be held in your hand and visible
                                     to other players,
                                 </span>
@@ -106,6 +107,7 @@ export default function Rules() {
                     </li>
                 </ol>
             </div>
+            <Footer />
         </div>
     );
 }
