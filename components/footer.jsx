@@ -1,5 +1,6 @@
 import { signOut } from "@lib/auth";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
     return (
@@ -7,7 +8,7 @@ export default function Footer() {
             <div className="sm:flex sm:items-center sm:justify-between">
                 <Link href="/" className="mb-4 flex items-center sm:mb-0">
                     <img
-                        src="/Interact-Club-Official.png"
+                        src="interact-logos/interact-logo-blue.png"
                         className="mr-3 h-8"
                         alt="Flowbite Logo"
                     />
@@ -15,53 +16,30 @@ export default function Footer() {
                         Spoon Game
                     </span>
                 </Link>
-                <ul className="mb-6 flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 sm:mb-0">
-                    <li>
-                        <Link
-                            href="#"
-                            className="mr-4 hover:underline md:mr-6 "
-                        >
-                            About
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#" className="mr-4 hover:underline md:mr-6">
-                            Privacy Policy
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            href="#"
-                            className="mr-4 hover:underline md:mr-6 "
-                        >
-                            Licensing
-                        </Link>
-                    </li>
-                    <li>
-                        <button
-                            onClick={() => signOut()}
-                            className="flex w-44 py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
-                        >
-                            <div class="mr-3 text-red-600">
-                                <svg
-                                    class="h-6 w-6"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                                    ></path>
-                                </svg>
-                            </div>
-                            Log Out
-                        </button>
-                    </li>
-                </ul>
+                <div className="mb-6 flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 sm:mb-0">
+                    <button
+                        onClick={() => signOut()}
+                        className="flex w-44 py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                    >
+                        <div class="mr-3 text-red-600">
+                            <svg
+                                class="h-6 w-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                                ></path>
+                            </svg>
+                        </div>
+                        Log Out
+                    </button>
+                </div>
             </div>
             <hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
             <span className="block text-sm text-gray-500 dark:text-gray-400 sm:text-center">
@@ -71,6 +49,29 @@ export default function Footer() {
                 </Link>
                 . All Rights Reserved.
             </span>
+            <div className="mt-2 flex justify-center gap-2">
+                {/* Any iconlink placeholder */}
+                <Image
+                    src="/meta-icons/React-Dark.svg"
+                    alt="ReactJS logo"
+                    width={32}
+                    height={32}
+                />
+
+                <Image
+                    src="/meta-icons/Next-Dark.svg"
+                    alt="NextJS logo"
+                    width={32}
+                    height={32}
+                />
+
+                <Image
+                    src="/meta-icons/Tailwind-Dark.svg"
+                    alt="TailwindCSS logo"
+                    width={32}
+                    height={32}
+                />
+            </div>
         </footer>
     );
 }
