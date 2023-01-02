@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
-import { useSession } from "next-auth/react";
-import { app } from "../../public/_firebase.js";
+import { app } from "../../lib/firebase.js";
+import { useUserData } from "../../lib/hooks.js";
+import AuthCheck from "../../components/AuthCheck";
 import {
     query,
     collection,
@@ -26,13 +27,14 @@ export default function TagReport() {
     const [showErrModal, setShowErrModal] = useState(false);
     const [errModalMsg, setErrModalMsg] = useState("An error ocurred");
 
-    const { data: session } = useSession();
+    // Session
+    const { user } = useUserData();
 
     const publishTagData = async (uuid) => {
         // Tagger query (based on email)
         const queryTagger = query(
             collection(db, "users"),
-            where("email", "==", session.user.email)
+            where("email", "==", user.email)
         );
         let taggerDoc = (await getDocs(queryTagger)).docs[0];
 
@@ -46,7 +48,7 @@ export default function TagReport() {
         // console.log(victimSnap);
         // console.log("Exists output: " + victimSnap.exists);
 
-        // Ttry statement success status
+        // Try statement success status
         let success = true;
         try {
             // Error handling:
@@ -259,3 +261,5 @@ export default function TagReport() {
         </div>
     );
 }
+
+// :)

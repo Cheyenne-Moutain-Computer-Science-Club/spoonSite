@@ -1,5 +1,4 @@
 import NavBar from "../../components/navbar";
-import { getSession } from "next-auth/react";
 import Footer from "../../components/footer";
 import { useState, useEffect } from "react";
 import {
@@ -11,7 +10,7 @@ import {
 	orderBy,
 } from "firebase/firestore";
 import PersonCard from "../../components/personCard";
-import { app } from "../../public/_firebase.js";
+import { app } from "../../lib/firebase.js";
 
 const db = getFirestore(app);
 

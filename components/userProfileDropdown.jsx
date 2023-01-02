@@ -1,11 +1,13 @@
-import { useSession, signOut } from "next-auth/react";
+// import { useSession, signOut } from "next-auth/react";
 import { useState } from "react";
 import Link from "next/link";
+import { useUserData } from "../lib/hooks";
+import { signIn, signOut } from "../lib/auth";
 
 // A component that displays a dropdown menu with a user's profile information
 export default function UserProfileDropdown() {
 	// Get the current user's data from the session
-	const { data: session } = useSession();
+	const user = useUserData().user;
 
 	const [open, setOpen] = useState(false);
 
@@ -19,7 +21,7 @@ export default function UserProfileDropdown() {
 			<button onClick={toggleDropdown}>
 				<img
 					className="h-10 w-10 rounded-full"
-					src={session.user.image}
+					src={user.photoURL}
 					alt="user photo"
 				/>
 			</button>
@@ -33,9 +35,9 @@ export default function UserProfileDropdown() {
 						>
 							<li>
 								<div class="py-3 px-4 text-sm text-gray-900 dark:text-white">
-									<div>{session.user.name}</div>
+									<div>{user.displayName}</div>
 									<div class="truncate font-medium">
-										{session.user.email}
+										{user.email}
 									</div>
 								</div>
 							</li>
