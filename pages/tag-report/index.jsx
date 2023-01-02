@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import Link from "next/link";
 import { doc, updateDoc } from "firebase/firestore";
 import { app } from "../../lib/firebase.js";
 import { useUserData } from "../../lib/hooks.js";
@@ -202,18 +203,17 @@ export default function TagReport() {
                     <ol className="ml-16 list-disc text-gray-300">
                         <li className="">
                             Ensure that you have read{" "}
-                            <a
-                                className="text-blue-500 underline"
-                                href="/rules"
-                            >
-                                the rules
-                            </a>
+                            <Link href="/rules">
+                                <span className="text-blue-500 underline">
+                                    the rules
+                                </span>
+                            </Link>
                         </li>
                         <li>
-                            Enter the 8-digit number from your victim's ID card
-                            into the box
+                            Enter the 8-digit number from your victim&lsquo;s ID
+                            card into the box
                             <span className="hidden lg:inline-block">es</span>
-                            &nbsp;below, then select "Submit"
+                            &nbsp;below, then select &ldquo;Submit&ldquo;
                         </li>
                         <li className="text-amber-500">
                             <span className="font-extrabold">Do not</span>
