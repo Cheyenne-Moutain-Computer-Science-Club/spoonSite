@@ -239,7 +239,7 @@ export default function NavBar() {
                     <div className="flex lg:order-2">
                         <button
                             type="button"
-                            className="rounded-lg: flex border-2 border-indigo-600 bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-transparent hover:text-gray-900"
+                            className="flex rounded-lg border-2 border-indigo-600 bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-transparent hover:text-gray-900"
                             onClick={() => signIn()}
                         >
                             <svg
