@@ -22,7 +22,7 @@ export default function NavBar() {
                     >
                         Home
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -44,7 +44,7 @@ export default function NavBar() {
                     >
                         Leaderboard
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -66,7 +66,7 @@ export default function NavBar() {
                     >
                         Team Leaderboard
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -88,7 +88,7 @@ export default function NavBar() {
                     >
                         Rules
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -111,7 +111,7 @@ export default function NavBar() {
                         >
                             Tag Someone
                             <svg
-                                class="h-6 w-6 lg:hidden"
+                                className="h-6 w-6 lg:hidden"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -132,15 +132,17 @@ export default function NavBar() {
     );
 
     const mobileExpandedMenu = (
-        <div class="absolute w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300 lg:hidden">
+        <div className="absolute w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300 lg:hidden">
             {pagesList}
             {user ? (
                 <>
-                    <hr class="border-gray-900" />
+                    <hr className="border-gray-900" />
                     <div className="flex justify-between">
-                        <div class="py-3 px-4 text-sm text-gray-900">
+                        <div className="py-3 px-4 text-sm text-gray-900">
                             <div>{user.displayName}</div>
-                            <div class="truncate font-medium">{user.email}</div>
+                            <div className="truncate font-medium">
+                                {user.email}
+                            </div>
                         </div>
                         <Link
                             href={`/profile/${user.displayName}`}
@@ -152,7 +154,7 @@ export default function NavBar() {
                                 alt="user photo"
                             />
                             <svg
-                                class="my-2 h-6 w-6"
+                                className="my-2 h-6 w-6"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -177,7 +179,7 @@ export default function NavBar() {
                     >
                         Login
                         <svg
-                            class="h-6 w-6"
+                            className="h-6 w-6"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -221,7 +223,7 @@ export default function NavBar() {
                             alt="user photo"
                         />
                         <svg
-                            class="my-2 h-6 w-6"
+                            className="my-2 h-6 w-6"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -243,7 +245,7 @@ export default function NavBar() {
                             onClick={() => signIn()}
                         >
                             <svg
-                                class="mx-2 h-5 w-5"
+                                className="mx-2 h-5 w-5"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
