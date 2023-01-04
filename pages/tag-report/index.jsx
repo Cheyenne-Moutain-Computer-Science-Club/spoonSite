@@ -164,7 +164,7 @@ export default function TagReport() {
                         id={`input-${index}`}
                         onChange={(event) => handleChangeTFA(event, index)}
                         autoComplete="off"
-                        className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white"
+                        className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white outline-none focus:outline-white"
                     />
                 ))}
             </div>
@@ -182,7 +182,7 @@ export default function TagReport() {
                     inputMode="numeric"
                     onChange={(event) => handleChangeNormal(event)}
                     autoComplete="off"
-                    className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white"
+                    className="w-150 rounded-lg border-b-4 border-indigo-600 bg-gray-800 px-3 py-5 text-center text-base font-semibold tracking-wider text-white outline-none focus:outline-white"
                 ></input>
             </div>
             <h3 className="ml-52 mt-2 flex justify-center text-xs text-gray-400">
