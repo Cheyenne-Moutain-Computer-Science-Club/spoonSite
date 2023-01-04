@@ -79,7 +79,7 @@ export default function LeaderboardPage() {
 								</span>
 							)}
 						</h1>
-						<Image
+						<img
 							className="mb-3 h-24 w-24 rounded-full shadow-lg"
 							src={image}
 							alt={name}
@@ -131,7 +131,7 @@ export default function LeaderboardPage() {
 					</div>
 
 					<div className="flex-shrink-0">
-						<Image
+						<img
 							className="h-8 w-8 rounded-full"
 							src={image}
 							alt="Profile image"
@@ -203,7 +203,7 @@ export default function LeaderboardPage() {
 					</div>
 
 					<div className="flex-shrink-0">
-						<Image
+						<img
 							className="h-8 w-8 rounded-full"
 							src={image}
 							alt="Profile image"
