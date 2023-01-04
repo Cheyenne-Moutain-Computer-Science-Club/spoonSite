@@ -22,16 +22,16 @@ export default function NavBar() {
                     >
                         Home
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
                             ></path>
                         </svg>
@@ -44,16 +44,16 @@ export default function NavBar() {
                     >
                         Leaderboard
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
                             ></path>
                         </svg>
@@ -66,16 +66,16 @@ export default function NavBar() {
                     >
                         Team Leaderboard
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
                             ></path>
                         </svg>
@@ -88,16 +88,16 @@ export default function NavBar() {
                     >
                         Rules
                         <svg
-                            class="h-6 w-6 lg:hidden"
+                            className="h-6 w-6 lg:hidden"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
                             ></path>
                         </svg>
@@ -111,16 +111,16 @@ export default function NavBar() {
                         >
                             Tag Someone
                             <svg
-                                class="h-6 w-6 lg:hidden"
+                                className="h-6 w-6 lg:hidden"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M7 11.5V14m0-2.5v-6a1.5 1.5 0 113 0m-3 6a1.5 1.5 0 00-3 0v2a7.5 7.5 0 0015 0v-5a1.5 1.5 0 00-3 0m-6-3V11m0-5.5v-1a1.5 1.5 0 013 0v1m0 0V11m0-5.5a1.5 1.5 0 013 0v3m0 0V11"
                                 ></path>
                             </svg>
@@ -132,15 +132,17 @@ export default function NavBar() {
     );
 
     const mobileExpandedMenu = (
-        <div class="absolute w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300 lg:hidden">
+        <div className="absolute w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300 lg:hidden">
             {pagesList}
             {user ? (
                 <>
-                    <hr class="border-gray-900" />
+                    <hr className="border-gray-900" />
                     <div className="flex justify-between">
-                        <div class="py-3 px-4 text-sm text-gray-900">
+                        <div className="py-3 px-4 text-sm text-gray-900">
                             <div>{user.displayName}</div>
-                            <div class="truncate font-medium">{user.email}</div>
+                            <div className="truncate font-medium">
+                                {user.email}
+                            </div>
                         </div>
                         <Link
                             href={`/profile/${user.displayName}`}
@@ -152,16 +154,16 @@ export default function NavBar() {
                                 alt="user photo"
                             />
                             <svg
-                                class="my-2 h-6 w-6"
+                                className="my-2 h-6 w-6"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M9 5l7 7-7 7"
                                 ></path>
                             </svg>
@@ -177,16 +179,16 @@ export default function NavBar() {
                     >
                         Login
                         <svg
-                            class="h-6 w-6"
+                            className="h-6 w-6"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                             ></path>
                         </svg>
@@ -221,16 +223,16 @@ export default function NavBar() {
                             alt="user photo"
                         />
                         <svg
-                            class="my-2 h-6 w-6"
+                            className="my-2 h-6 w-6"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M9 5l7 7-7 7"
                             ></path>
                         </svg>
@@ -243,16 +245,16 @@ export default function NavBar() {
                             onClick={() => signIn()}
                         >
                             <svg
-                                class="mx-2 h-5 w-5"
+                                className="mx-2 h-5 w-5"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
                                 <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth="2"
                                     d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
                                 ></path>
                             </svg>
@@ -285,9 +287,9 @@ export default function NavBar() {
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M6 18L18 6M6 6l12 12"
                             ></path>
                         </svg>
@@ -300,9 +302,9 @@ export default function NavBar() {
                             xmlns="http://www.w3.org/2000/svg"
                         >
                             <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 d="M4 6h16M4 12h16M4 18h16"
                             ></path>
                         </svg>
