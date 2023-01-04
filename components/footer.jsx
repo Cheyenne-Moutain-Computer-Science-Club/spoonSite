@@ -21,9 +21,9 @@ export default function Footer() {
                         onClick={() => signOut()}
                         className="flex w-44 py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                        <div class="mr-3 text-red-600">
+                        <div className="mr-3 text-red-600">
                             <svg
-                                class="h-6 w-6"
+                                className="h-6 w-6"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
