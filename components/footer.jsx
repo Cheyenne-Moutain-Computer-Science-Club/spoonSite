@@ -1,20 +1,8 @@
-import { signIn, signOut } from "@lib/auth";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, firestore } from "@lib/firebase";
-import { useContext } from "react";
-import { UserContext } from "../lib/context";
+import { signOut } from "@lib/auth";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Footer() {
-    // Get logged in status
-    const [user] = useAuthState(auth);
-
-    // Control for sign in/out button in the footer
-    const signButton = !user
-        ? [signIn(), "text-green-500", "Log In"]
-        : [signOut(), "text-red-600", "Log Out"];
-
     return (
         <footer className="relative mt-16 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
@@ -30,12 +18,12 @@ export default function Footer() {
                 </Link>
                 <div className="mb-6 flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 sm:mb-0">
                     <button
-                        onClick={() => signButton[0]}
+                        onClick={() => signOut()}
                         className="flex w-44 py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
-                        <div className={`mr-3 ${signButton[1]}`}>
+                        <div class="mr-3 text-red-600">
                             <svg
-                                className="h-6 w-6"
+                                class="h-6 w-6"
                                 fill="none"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
@@ -49,7 +37,7 @@ export default function Footer() {
                                 ></path>
                             </svg>
                         </div>
-                        {signButton[2]}
+                        Log Out
                     </button>
                 </div>
             </div>
