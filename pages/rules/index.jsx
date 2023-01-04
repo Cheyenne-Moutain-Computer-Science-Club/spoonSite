@@ -9,14 +9,14 @@ export default function Rules() {
     return (
         <div>
             <NavBar />
-            <div className="mx-5 mt-2 mb-5 text-lg leading-8 tracking-wider text-gray-300">
+            <div className="mx-5 mt-2 mb-5 leading-8 tracking-wider text-gray-300">
                 <div className="mt-5 ml-7">{PageTitle("Rules")}</div>
                 <br className="my-3" />
-                <p className="mx-48 font-semibold text-gray-200">
+                <p className="mx-6 font-semibold text-gray-200 md:mx-24 lg:mx-48">
                     All rules are made to protect student safety, learning, and
                     privacy. The rules are, but not limited to the following:
                 </p>
-                <ol className="mx-56 my-5 list-decimal space-y-8 marker:font-black marker:text-white">
+                <ol className="mx-8 my-5 list-decimal space-y-8 text-sm marker:font-black marker:text-white md:mx-28 md:text-lg lg:mx-56">
                     <li className={emphasis}>
                         All school rules listed in the student handbook apply to
                         this game.
