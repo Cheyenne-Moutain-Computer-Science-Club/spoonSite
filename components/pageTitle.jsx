@@ -6,7 +6,7 @@ import React from "react";
 export default function PageTitle(text) {
     return (
         <div>
-            <div className="mono" /*{nabla.className}*/>
+            <div className="mono text-white" /*{nabla.className}*/>
                 <h1 className="inline-block border-b-8 border-dashed border-amber-400 p-4 text-6xl font-black tracking-widest">
                     {text}
                 </h1>
