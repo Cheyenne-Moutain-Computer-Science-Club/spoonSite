@@ -9,8 +9,6 @@ import {
 	where,
 	orderBy,
 } from "firebase/firestore";
-import PersonCard from "@components/personCard";
-import PersonRow from "@components/personRow";
 import { app } from "@lib/firebase.js";
 import { useUserData } from "@lib/hooks.js";
 
@@ -85,7 +83,7 @@ export default function LeaderboardPage() {
 							alt={name}
 						/>
 						<h5
-							className={`mb-1 text-xl font-medium ${
+							className={`mb-1 text-center text-xl font-medium ${
 								highlight ? "text-gray-900" : "text-white"
 							}`}
 						>
@@ -158,16 +156,90 @@ export default function LeaderboardPage() {
 		);
 	});
 
+	const mobileRows = leaderboard.map((data, i) => {
+		const name = data.name.replace("-Student", "");
+		const image = data.image;
+		const score = data.score + ` pt${data.score != 1 ? "s" : ""}.`;
+		const place = data.outBy ? "OUT" : i + 1;
+		const highlight = data.name == user?.displayName;
+		const gray = data.outBy;
+
+		return (
+			// <PersonRow obj={data} place={i + 1} key={i} highlight={false} gray={}/>
+
+			<li
+				className={`rounded py-3 sm:py-4 ${gray && "bg-gray-800"} ${
+					highlight && "bg-gradient-to-r from-blue-500 to-teal-300"
+				}`}
+			>
+				<div className="flex items-center space-x-4">
+					<div
+						className={`m-2 inline-flex w-10 justify-center text-base font-semibold ${
+							highlight ? "text-gray-900" : "text-white"
+						}`}
+					>
+						{place > 3 && place}
+						{place == "OUT" && place}
+
+						{place == 1 && (
+							<span className="m-2 rounded bg-yellow-200 px-2.5 py-0.5 text-lg font-medium text-yellow-800">
+								1
+							</span>
+						)}
+						{place == 2 && (
+							<span className="m-2 rounded bg-gray-400 px-2.5 py-0.5 text-lg font-medium text-gray-800">
+								2
+							</span>
+						)}
+						{place == 3 && (
+							<span className="m-2 rounded bg-amber-800 px-2.5 py-0.5 text-lg font-medium text-amber-500">
+								3
+							</span>
+						)}
+					</div>
+
+					<div className="flex-shrink-0">
+						<img
+							className="h-8 w-8 rounded-full"
+							src={image}
+							alt="Profile image"
+						/>
+					</div>
+
+					<div className="min-w-0 flex-1">
+						<p
+							className={`truncate text-sm font-medium ${
+								highlight ? "text-gray-900" : "text-white"
+							}`}
+						>
+							{name}
+						</p>
+					</div>
+					<p
+						className={`p-2 text-sm ${
+							highlight ? "text-gray-700" : "text-gray-400"
+						}`}
+					>
+						{score}
+					</p>
+				</div>
+			</li>
+		);
+	});
+
 	return (
 		<>
 			<NavBar />
 			<h1 className="text-white">Leaderboard</h1>
 			<div>
-				<div className="container mx-auto mt-4">
+				<div className="container mx-auto mt-4 hidden lg:inline">
 					<div className="grid grid-cols-3">{cards}</div>
 				</div>
-				<div className="container mx-auto mt-4">
+				<div className="container mx-auto mt-4 hidden lg:inline">
 					<ul className="divide-y divide-white">{rows}</ul>
+				</div>
+				<div className="container mx-auto mt-4 lg:hidden">
+					<ul className="divide-y divide-white">{mobileRows}</ul>
 				</div>
 			</div>
 			<Footer />
