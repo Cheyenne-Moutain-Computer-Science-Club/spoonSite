@@ -235,7 +235,7 @@ export default function LeaderboardPage() {
 		<>
 			<NavBar />
 			<h1 className="text-white">Leaderboard</h1>
-			<div>
+			<div className="lg:m-10">
 				<div className="container mx-auto mt-4 hidden lg:inline">
 					<div className="grid grid-cols-3">{cards}</div>
 				</div>
