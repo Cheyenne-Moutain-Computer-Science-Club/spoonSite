@@ -11,6 +11,7 @@ import {
 } from "firebase/firestore";
 import { app } from "@lib/firebase.js";
 import { useUserData } from "@lib/hooks.js";
+import Image from "next/image";
 
 const db = getFirestore(app);
 
@@ -53,6 +54,7 @@ export default function LeaderboardPage() {
 		if (i < 3) {
 			return (
 				<div
+					key={i}
 					className={`m-4 rounded-lg border border-gray-700 ${
 						highlight
 							? "bg-gradient-to-r from-blue-500 to-teal-300"
@@ -77,7 +79,7 @@ export default function LeaderboardPage() {
 								</span>
 							)}
 						</h1>
-						<img
+						<Image
 							className="mb-3 h-24 w-24 rounded-full shadow-lg"
 							src={image}
 							alt={name}
@@ -114,6 +116,7 @@ export default function LeaderboardPage() {
 			// <PersonRow obj={data} place={i + 1} key={i} highlight={false} gray={}/>
 
 			<li
+				key={i}
 				className={`rounded py-3 sm:py-4 ${gray && "bg-gray-800"} ${
 					highlight && "bg-gradient-to-r from-blue-500 to-teal-300"
 				}`}
@@ -128,7 +131,7 @@ export default function LeaderboardPage() {
 					</div>
 
 					<div className="flex-shrink-0">
-						<img
+						<Image
 							className="h-8 w-8 rounded-full"
 							src={image}
 							alt="Profile image"
@@ -168,6 +171,7 @@ export default function LeaderboardPage() {
 			// <PersonRow obj={data} place={i + 1} key={i} highlight={false} gray={}/>
 
 			<li
+				key={i}
 				className={`rounded py-3 sm:py-4 ${gray && "bg-gray-800"} ${
 					highlight && "bg-gradient-to-r from-blue-500 to-teal-300"
 				}`}
@@ -199,7 +203,7 @@ export default function LeaderboardPage() {
 					</div>
 
 					<div className="flex-shrink-0">
-						<img
+						<Image
 							className="h-8 w-8 rounded-full"
 							src={image}
 							alt="Profile image"
