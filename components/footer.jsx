@@ -15,7 +15,7 @@ export default function Footer() {
     // const signButton = [1, "text-green-500", "Log In"];
 
     return (
-        <footer className="relative mt-16 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
+        <footer className="relative mt-10 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
                 <Link href="/" className="mb-4 flex items-center sm:mb-0">
                     <Image
