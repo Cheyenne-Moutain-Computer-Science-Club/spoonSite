@@ -228,7 +228,7 @@ export default function TagReport() {
                                 &nbsp;below, then select &ldquo;Submit&ldquo;
                             </div>
                             <div className="block lg:hidden">
-                                Enter your victim's 8-digit ID below
+                                Enter your victim&lsquo;s 8-digit ID below
                             </div>
                         </li>
                     </ol>
