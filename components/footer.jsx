@@ -18,11 +18,6 @@ export default function Footer() {
         <footer className="relative mt-16 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
                 <Link href="/" className="mb-4 flex items-center sm:mb-0">
-                    {/* <img
-                        src="interact-logos/interact-logo-blue.png"
-                        className="mr-3 h-8"
-                        alt="Flowbite Logo"
-                    /> */}
                     <Image
                         src="/interact-logos/interact-logo-blue.png"
                         alt="Interact Club logo"
