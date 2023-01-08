@@ -2,6 +2,7 @@ import { signIn } from "@lib/auth";
 import { useUserData } from "@lib/hooks";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NavBar() {
     const user = useUserData().user;
@@ -131,6 +132,12 @@ export default function NavBar() {
                                 src={user.photoURL}
                                 alt="user photo"
                             />
+                            {/* <Image
+                                src={user.photoURL}
+                                alt="User photo"
+                                width={40}
+                                height={40}
+                            /> */}
                             <svg
                                 className="my-2 h-6 w-6"
                                 fill="none"
@@ -180,10 +187,17 @@ export default function NavBar() {
         <nav className="sticky top-0 rounded-b border-gray-200 bg-gradient-to-r from-blue-500 to-teal-300 py-2.5 lg:static lg:px-4">
             <div className="container mx-auto hidden flex-wrap items-center justify-between px-2 lg:flex">
                 <Link href="/" className="flex items-center">
-                    <img
+                    {/* <img
                         src="interact-logos/interact-logo-gray.png"
                         className="mr-3 h-11"
                         alt="Interact Club Logo"
+                    /> */}
+                    <Image
+                        src="/interact-logos/interact-logo-gray.png"
+                        alt="Interact Club logo"
+                        width={44}
+                        height={44}
+                        className="mr-3"
                     />
                     <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
                         Spoon Game
@@ -200,6 +214,12 @@ export default function NavBar() {
                             src={user.photoURL}
                             alt="user photo"
                         />
+                        {/* <Image
+                            src={user.photoURL}
+                            alt="User photo"
+                            width={40}
+                            height={40}
+                        /> */}
                         <svg
                             className="my-2 h-6 w-6"
                             fill="none"
@@ -243,10 +263,17 @@ export default function NavBar() {
             </div>
             <div className="container mx-auto flex flex-wrap items-center justify-between px-2 lg:hidden">
                 <Link href="/" className="flex items-center">
-                    <img
+                    {/* <img
                         src="interact-logos/interact-logo-gray.png"
                         className="mr-3 h-11"
                         alt="Interact Club Logo"
+                    /> */}
+                    <Image
+                        src="/interact-logos/interact-logo-gray.png"
+                        alt="Interact Club logo"
+                        width={44}
+                        height={44}
+                        className="mr-3"
                     />
                     <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
                         Spoon Game

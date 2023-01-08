@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function ErrorModal(closeHandler, message) {
     return (
@@ -16,10 +17,11 @@ export default function ErrorModal(closeHandler, message) {
                             <p className="my-4 text-lg leading-relaxed text-slate-500">
                                 {message}
                             </p>
-                            <img
-                                src={"statusIndicators/error.png"}
+                            <Image
+                                src="/statusIndicators/error.png"
                                 alt="Ope"
-                                className="h-32 w-32"
+                                width={128}
+                                height={128}
                             />
                         </div>
                         {/*footer*/}

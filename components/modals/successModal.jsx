@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export default function SuccessModal(closeHandler, name, numberTagged) {
     return (
@@ -14,7 +15,12 @@ export default function SuccessModal(closeHandler, name, numberTagged) {
                         {/*body*/}
                         <div className="relative flex-auto p-6">
                             <div className="flex justify-center">
-                                <img className="w-56" src="statusIndicators/tick2.gif" />
+                                <Image
+                                    src="/statusIndicators/tick2.gif"
+                                    alt="Confirmed"
+                                    width={224}
+                                    height={224}
+                                />
                             </div>
                             <p className=" mb-2 text-lg leading-relaxed text-slate-500">
                                 You have successfully tagged&nbsp;
