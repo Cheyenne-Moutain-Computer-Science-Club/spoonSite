@@ -2,6 +2,37 @@ import React from "react";
 import Image from "next/image";
 
 export default function ErrorModal(closeHandler, message) {
+    const alignSide = (
+        <div className="relative flex flex-auto flex-row p-6">
+            <p className="my-4 text-lg leading-relaxed text-slate-500">
+                {message}
+            </p>
+            <Image
+                src="/statusIndicators/error.png"
+                alt="Ope"
+                width={128}
+                height={128}
+            />
+        </div>
+    );
+
+    const alignVertical = (
+        <div className="relative flex flex-auto flex-col p-6">
+            <div className="mb-4 flex justify-center">
+                <Image
+                    src="/statusIndicators/warning.png"
+                    alt="Ope"
+                    width={128}
+                    height={128}
+                />
+            </div>
+            <hr />
+            <p className="my-4 text-lg leading-relaxed text-slate-500">
+                {message}
+            </p>
+        </div>
+    );
+
     return (
         <>
             <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
@@ -13,16 +44,11 @@ export default function ErrorModal(closeHandler, message) {
                             <h3 className="text-3xl font-semibold">Uh-oh...</h3>
                         </div>
                         {/*body*/}
-                        <div className="relative flex flex-auto flex-row p-6">
-                            <p className="my-4 text-lg leading-relaxed text-slate-500">
-                                {message}
-                            </p>
-                            <Image
-                                src="/statusIndicators/error.png"
-                                alt="Ope"
-                                width={128}
-                                height={128}
-                            />
+                        <div>
+                            <div className="hidden md:block">{alignSide}</div>
+                            <div className="block md:hidden">
+                                {alignVertical}
+                            </div>
                         </div>
                         {/*footer*/}
                         <div className="flex items-center justify-end rounded-b border-t border-solid border-slate-200 p-6">
