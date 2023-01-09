@@ -52,7 +52,9 @@ export default function TagReport() {
         let success = true;
         try {
             // Error handling:
-            if (taggerDoc.data().outBy != 0) {
+            if (!user) {
+                throw "Oh no! You're not logged in.";
+            } else if (taggerDoc.data().outBy != 0) {
                 throw "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)";
             } else if (!(victimSnap.size > 0)) {
                 throw "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly.";
