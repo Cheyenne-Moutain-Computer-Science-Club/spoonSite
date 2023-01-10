@@ -4,13 +4,13 @@ import { useState } from "react";
 import Link from "next/link";
 
 export default function NavBar() {
-    const user = useUserData().user;
+	const user = useUserData().user;
 
-    const [mobileMenuState, setMobileMenuState] = useState(false);
+	const [mobileMenuState, setMobileMenuState] = useState(false);
 
-    const mobileMenuButtonHandler = () => {
-        setMobileMenuState((current) => !current);
-    };
+	const mobileMenuButtonHandler = () => {
+		setMobileMenuState((current) => !current);
+	};
 
 	const pagesList = (
 		<div className="order-1 flex w-full items-center justify-between lg:w-auto">
@@ -59,7 +59,7 @@ export default function NavBar() {
 						</svg>
 					</Link>
 				</li>
-				<li className="lg:hidden">
+				{/* <li className="lg:hidden">
 					<Link
 						href="/team-leaderboard"
 						className="flex justify-between py-2 pl-3 pr-4 text-gray-900 hover:text-white lg:p-0"
@@ -74,14 +74,14 @@ export default function NavBar() {
 						>
 							<path
 								strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
+								strokeLinejoin="round"
+								strokeWidth="2"
 								d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
 							></path>
 						</svg>
 					</Link>
-				</li>
-                <li>
+				</li> */}
+				<li>
 					<Link
 						href="/rules"
 						className="flex justify-between py-2 pl-3 pr-4 text-gray-900 hover:text-white lg:p-0"
@@ -131,187 +131,184 @@ export default function NavBar() {
 		</div>
 	);
 
-    const mobileExpandedMenu = (
-        <div className="absolute w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300 lg:hidden">
-            {pagesList}
-            {user ? (
-                <>
-                    <hr className="border-gray-900" />
-                    <div className="flex justify-between">
-                        <div className="py-3 px-4 text-sm text-gray-900">
-                            <div>{user.displayName}</div>
-                            <div className="truncate font-medium">
-                                {user.email}
-                            </div>
-                        </div>
-                        <Link
-                            href={`/profile/${user.displayName}`}
-                            className="flex justify-end py-3 hover:text-white lg:order-2"
-                        >
-                            <img
-                                className="h-10 w-10 rounded-full"
-                                src={user.photoURL}
-                                alt="user photo"
-                            />
-                            <svg
-                                className="my-2 h-6 w-6"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M9 5l7 7-7 7"
-                                ></path>
-                            </svg>
-                        </Link>
-                    </div>
-                </>
-            ) : (
-                <>
-                    <hr className="border-gray-900" />
-                    <button
-                        className="my-3 flex w-full justify-between px-3 text-gray-900 hover:text-white lg:hidden"
-                        onClick={() => signIn()}
-                    >
-                        Login
-                        <svg
-                            className="h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                            ></path>
-                        </svg>
-                    </button>
-                </>
-            )}
-        </div>
-    );
+	const mobileExpandedMenu = (
+		<div className="absolute w-screen rounded-sm bg-gradient-to-r from-blue-500 to-teal-300 lg:hidden">
+			{pagesList}
+			{user ? (
+				<>
+					<hr className="border-gray-900" />
+					<div className="flex justify-between">
+						<div className="py-3 px-4 text-sm text-gray-900">
+							<div>{user.displayName}</div>
+							<div className="truncate font-medium">
+								{user.email}
+							</div>
+						</div>
+						<Link
+							href="/leaderboard"
+							className="flex justify-end py-3 hover:text-white lg:order-2"
+						>
+							<img
+								className="h-10 w-10 rounded-full"
+								src={user.photoURL}
+								alt="user photo"
+							/>
+							<svg
+								className="my-2 h-6 w-6"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M9 5l7 7-7 7"
+								></path>
+							</svg>
+						</Link>
+					</div>
+				</>
+			) : (
+				<>
+					<hr className="border-gray-900" />
+					<button
+						className="my-3 flex w-full justify-between px-3 text-gray-900 hover:text-white lg:hidden"
+						onClick={() => signIn()}
+					>
+						Login
+						<svg
+							className="h-6 w-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+							></path>
+						</svg>
+					</button>
+				</>
+			)}
+		</div>
+	);
 
-    return (
-        <nav className="sticky top-0 rounded-b border-gray-200 bg-gradient-to-r from-blue-500 to-teal-300 py-2.5 lg:static lg:px-4">
-            <div className="container mx-auto hidden flex-wrap items-center justify-between px-2 lg:flex">
-                <Link href="/" className="flex items-center">
-                    <img
-                        src="interact-logos/interact-logo-gray.png"
-                        className="mr-3 h-11"
-                        alt="Interact Club Logo"
-                    />
-                    <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
-                        Spoon Game
-                    </span>
-                </Link>
-                {pagesList}
-                {user ? (
-                    <Link
-                        href={`/profile/${user.displayName}`}
-                        className="flex lg:order-2"
-                    >
-                        <img
-                            className="h-10 w-10 rounded-full"
-                            src={user.photoURL}
-                            alt="user photo"
-                        />
-                        <svg
-                            className="my-2 h-6 w-6"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M9 5l7 7-7 7"
-                            ></path>
-                        </svg>
-                    </Link>
-                ) : (
-                    <div className="flex lg:order-2">
-                        <button
-                            type="button"
-                            className="flex rounded-lg border-2 border-indigo-600 bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-transparent hover:text-gray-900"
-                            onClick={() => signIn()}
-                        >
-                            <svg
-                                className="mx-2 h-5 w-5"
-                                fill="none"
-                                stroke="currentColor"
-                                viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                                ></path>
-                            </svg>
-                            Login
-                        </button>
-                    </div>
-                )}
-            </div>
-            <div className="container mx-auto flex flex-wrap items-center justify-between px-2 lg:hidden">
-                <Link href="/" className="flex items-center">
-                    <img
-                        src="interact-logos/interact-logo-gray.png"
-                        className="mr-3 h-11"
-                        alt="Interact Club Logo"
-                    />
-                    <span className="self-center whitespace-nowrap text-xl font-semibold text-white">
-                        Spoon Game
-                    </span>
-                </Link>
-                <button
-                    className="mr-3 text-gray-900"
-                    onClick={mobileMenuButtonHandler}
-                >
-                    {mobileMenuState ? (
-                        <svg
-                            className="h-8 w-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M6 18L18 6M6 6l12 12"
-                            ></path>
-                        </svg>
-                    ) : (
-                        <svg
-                            className="h-8 w-8"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth="2"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            ></path>
-                        </svg>
-                    )}
-                </button>
-            </div>
-            {mobileMenuState && mobileExpandedMenu}
-        </nav>
-    );
+	return (
+		<nav className="sticky top-0 rounded-b border-gray-200 bg-gradient-to-r from-blue-500 to-teal-300 py-2.5 lg:static lg:px-4">
+			<div className="container mx-auto hidden flex-wrap items-center justify-between px-2 lg:flex">
+				<Link href="/leaderboard" className="flex items-center">
+					<img
+						src="interact-logos/interact-logo-gray.png"
+						className="mr-3 h-11"
+						alt="Interact Club Logo"
+					/>
+					<span className="self-center whitespace-nowrap text-xl font-semibold text-white">
+						Spoon Game
+					</span>
+				</Link>
+				{pagesList}
+				{user ? (
+					<Link href="/profile" className="flex lg:order-2">
+						<img
+							className="h-10 w-10 rounded-full"
+							src={user.photoURL}
+							alt="user photo"
+						/>
+						<svg
+							className="my-2 h-6 w-6"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M9 5l7 7-7 7"
+							></path>
+						</svg>
+					</Link>
+				) : (
+					<div className="flex lg:order-2">
+						<button
+							type="button"
+							className="flex rounded-lg border-2 border-indigo-600 bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white duration-150 hover:bg-transparent hover:text-gray-900"
+							onClick={() => signIn()}
+						>
+							<svg
+								className="mx-2 h-5 w-5"
+								fill="none"
+								stroke="currentColor"
+								viewBox="0 0 24 24"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+								></path>
+							</svg>
+							Login
+						</button>
+					</div>
+				)}
+			</div>
+			<div className="container mx-auto flex flex-wrap items-center justify-between px-2 lg:hidden">
+				<Link href="/" className="flex items-center">
+					<img
+						src="interact-logos/interact-logo-gray.png"
+						className="mr-3 h-11"
+						alt="Interact Club Logo"
+					/>
+					<span className="self-center whitespace-nowrap text-xl font-semibold text-white">
+						Spoon Game
+					</span>
+				</Link>
+				<button
+					className="mr-3 text-gray-900"
+					onClick={mobileMenuButtonHandler}
+				>
+					{mobileMenuState ? (
+						<svg
+							className="h-8 w-8"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M6 18L18 6M6 6l12 12"
+							></path>
+						</svg>
+					) : (
+						<svg
+							className="h-8 w-8"
+							fill="none"
+							stroke="currentColor"
+							viewBox="0 0 24 24"
+							xmlns="http://www.w3.org/2000/svg"
+						>
+							<path
+								strokeLinecap="round"
+								strokeLinejoin="round"
+								strokeWidth="2"
+								d="M4 6h16M4 12h16M4 18h16"
+							></path>
+						</svg>
+					)}
+				</button>
+			</div>
+			{mobileMenuState && mobileExpandedMenu}
+		</nav>
+	);
 }
