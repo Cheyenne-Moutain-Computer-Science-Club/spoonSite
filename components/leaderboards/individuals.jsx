@@ -6,7 +6,7 @@ export default function IndividualLeaderboard({ data, user }) {
 	const cards = activeUsers.map((data, i) => {
 		const name = data.name.replace("-Student", "");
 		const image = data.image;
-		const score = data.score + ` pt${data.score != 1 && "s"}.`;
+		const score = data.score + ` pt${data.score != 1 ? "s" : ""}.`;
 		const place = i + 1;
 		const highlight = data.name == user?.displayName;
 
@@ -66,7 +66,7 @@ export default function IndividualLeaderboard({ data, user }) {
 	const rows = leaderboard.slice(3, leaderboard.length).map((data, i) => {
 		const name = data.name.replace("-Student", "");
 		const image = data.image;
-		const score = data.score + ` pt${data.score != 1 && "s"}.`;
+		const score = data.score + ` pt${data.score != 1 ? "s" : ""}.`;
 		const place = data.outBy ? "OUT" : i + 4;
 		const highlight = data.name == user?.displayName;
 		const gray = data.outBy;
