@@ -34,7 +34,8 @@ export default function LeaderboardPage() {
 
 				{leaderboard == 1 && (
 					<div className="lg:col-span-6 lg:col-start-1 lg:m-2">
-						<TeamLeaderboard data={values} user={user} />
+						{/*<TeamLeaderboard data={values} user={user} />*/}
+						<p>Sorry, not here yet ;)</p>
 					</div>
 				)}
 				{/* <div className="col-span-1 col-start-7 mt-6 hidden h-20 rounded border-2 border-gray-700 bg-gray-800 shadow-xl lg:inline">
