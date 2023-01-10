@@ -156,7 +156,7 @@ export default function TagReport() {
 
     const TFAStyleInput = (
         <div name="2FAStyleInputs" className="flex justify-center">
-            <div className="overflow-scroll whitespace-nowrap text-3xl font-extrabold">
+            <div className="whitespace-nowrap text-3xl font-extrabold">
                 {values.map((value, index) => (
                     <input
                         key={index}
