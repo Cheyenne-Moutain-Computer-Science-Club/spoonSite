@@ -2,9 +2,8 @@ import React from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { doc, updateDoc } from "firebase/firestore";
-import { app } from "../../lib/firebase.js";
+import { app } from "@lib/firebase.js";
 import { useUserData } from "../../lib/hooks.js";
-import AuthCheck from "../../components/AuthCheck";
 import {
     query,
     collection,
@@ -13,11 +12,11 @@ import {
     getDocs,
     increment,
 } from "firebase/firestore";
-import NavBar from "../../components/navbar";
-import Footer from "../../components/footer.jsx";
-import PageTitle from "../../components/pageTitle.jsx";
-import ErrorModal from "../../components/modals/errorModal.jsx";
-import SuccessModal from "../../components/modals/successModal.jsx";
+import NavBar from "@components/navbar";
+import Footer from "@components/footer.jsx";
+import PageTitle from "@components/pageTitle.jsx";
+import ErrorModal from "@components/modals/errorModal.jsx";
+import SuccessModal from "@components/modals/successModal.jsx";
 
 const db = getFirestore(app);
 
@@ -53,7 +52,9 @@ export default function TagReport() {
         let success = true;
         try {
             // Error handling:
-            if (taggerDoc.data().outBy != 0) {
+            if (!user) {
+                throw "Oh no! You're not logged in.";
+            } else if (taggerDoc.data().outBy != 0) {
                 throw "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)";
             } else if (!(victimSnap.size > 0)) {
                 throw "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly.";
@@ -155,7 +156,7 @@ export default function TagReport() {
 
     const TFAStyleInput = (
         <div name="2FAStyleInputs" className="flex justify-center">
-            <div className="overflow-scroll whitespace-nowrap">
+            <div className="overflow-scroll whitespace-nowrap text-3xl font-extrabold">
                 {values.map((value, index) => (
                     <input
                         key={index}
@@ -164,7 +165,7 @@ export default function TagReport() {
                         id={`input-${index}`}
                         onChange={(event) => handleChangeTFA(event, index)}
                         autoComplete="off"
-                        className="m-5 w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white outline-none focus:outline-white"
+                        className="m-5 aspect-square w-20 rounded-2xl border-white bg-gray-800 py-6 text-center text-white outline-none focus:outline-white"
                     />
                 ))}
             </div>
@@ -196,33 +197,45 @@ export default function TagReport() {
             <NavBar />
             <div className="mx-5 mt-2 mb-5">
                 <div className="">{PageTitle("Tag Reporting")}</div>
-                <br className="my-2" />
-                <div className="ml-8 w-7/12 max-w-2xl rounded-xl border-2 border-neutral-300 bg-darkerblue-100 p-3">
-                    <h3 className="text-gray-200 ">Some quick instructions:</h3>
-                    <hr />
-                    <ol className="ml-16 list-disc text-gray-300">
+                <br className="my-4" />
+                <div className="mr-0 flex justify-center rounded-xl lg:mr-36">
+                    <ol className="list-disc space-y-1 text-xs font-semibold tracking-wide text-gray-300">
                         <li className="">
                             Ensure that you have read{" "}
                             <Link href="/rules">
                                 <span className="text-blue-500 underline">
                                     the rules
                                 </span>
+                                <span className="text-amber-500">
+                                    <div className="hidden lg:inline-block">
+                                        <span className="text-gray-300">
+                                            &nbsp;-&nbsp;
+                                        </span>
+                                        <span className="font-black">
+                                            Do not
+                                        </span>
+                                        &nbsp;attempt to tag someone unless you
+                                        have legitimately obtained their ID card
+                                    </div>
+                                </span>
                             </Link>
                         </li>
                         <li>
-                            Enter the 8-digit number from your victim&lsquo;s ID
-                            card into the box
-                            <span className="hidden lg:inline-block">es</span>
-                            &nbsp;below, then select &ldquo;Submit&ldquo;
-                        </li>
-                        <li className="text-amber-500">
-                            <span className="font-extrabold">Do not</span>
-                            &nbsp;attempt to tag someone unless you have
-                            legitimately obtained their ID card
+                            <div className="hidden lg:block">
+                                Enter the 8-digit number from your
+                                victim&lsquo;s ID card into the box
+                                <span className="hidden lg:inline-block">
+                                    es
+                                </span>
+                                &nbsp;below, then select &ldquo;Submit&ldquo;
+                            </div>
+                            <div className="block lg:hidden">
+                                Enter your victim&lsquo;s 8-digit ID below
+                            </div>
                         </li>
                     </ol>
                 </div>
-                <br className="my-3" />
+                <br className="my-0" />
                 <div>
                     <form onSubmit={handleSubmit} onReset={handleReset}>
                         <div className="hidden lg:block">{TFAStyleInput}</div>
@@ -261,5 +274,3 @@ export default function TagReport() {
         </div>
     );
 }
-
-// :)

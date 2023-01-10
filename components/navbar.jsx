@@ -2,6 +2,7 @@ import { signIn } from "@lib/auth";
 import { useUserData } from "@lib/hooks";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NavBar() {
 	const user = useUserData().user;

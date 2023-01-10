@@ -5,11 +5,11 @@ import { useUserData } from "../lib/hooks";
 // import { SignInButton } from "../lib/_firebase";
 
 export default function MyApp({ Component, pageProps }) {
-	const userData = useUserData();
+    const userData = useUserData();
 
-	return (
-		<UserContext.Provider value={userData}>
-			<Component {...pageProps} />
-		</UserContext.Provider>
-	);
+    return (
+        <UserContext.Provider value={userData}>
+            <Component {...pageProps} />
+        </UserContext.Provider>
+    );
 }

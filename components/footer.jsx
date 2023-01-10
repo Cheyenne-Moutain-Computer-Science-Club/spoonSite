@@ -1,8 +1,6 @@
 import { signIn, signOut } from "@lib/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, firestore } from "@lib/firebase";
-import { useContext } from "react";
-import { UserContext } from "../lib/context";
+import { auth } from "@lib/firebase";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -17,13 +15,15 @@ export default function Footer() {
     // const signButton = [1, "text-green-500", "Log In"];
 
     return (
-        <footer className="relative mt-16 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
+        <footer className="relative mt-10 rounded-t-lg bg-white p-4 shadow dark:bg-gray-900 md:px-6 md:py-8">
             <div className="sm:flex sm:items-center sm:justify-between">
                 <Link href="/" className="mb-4 flex items-center sm:mb-0">
-                    <img
-                        src="interact-logos/interact-logo-blue.png"
-                        className="mr-3 h-8"
-                        alt="Flowbite Logo"
+                    <Image
+                        src="/interact-logos/interact-logo-blue.png"
+                        alt="Interact Club logo"
+                        width={32}
+                        height={32}
+                        className="mr-3"
                     />
                     <span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
                         Spoon Game
@@ -32,7 +32,7 @@ export default function Footer() {
                 <div className="mb-6 flex flex-wrap items-center text-sm text-gray-500 dark:text-gray-400 sm:mb-0">
                     <button
                         onClick={() => signButton[0]()}
-                        className="flex w-44 py-2 px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+                        className="flex w-44 py-2 px-1.5 text-left hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
                     >
                         <div className={`mr-3 ${signButton[1]}`}>
                             <svg
