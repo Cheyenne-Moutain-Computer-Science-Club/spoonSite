@@ -19,7 +19,7 @@ const getStats = async () => {
 
 const timeUntilEnd = () => {
     const currentDate = new Date();
-    const endDate = new Date(Date.UTC(2023, 4, 20, 7, 0, 0, 0));
+    const endDate = new Date(Date.UTC(2023, 5, 19, 7, 0, 0, 0));
     const dayDifference =
         (endDate.getTime() - currentDate.getTime()) / (1000 * 3600 * 24);
     return Math.round(dayDifference);
