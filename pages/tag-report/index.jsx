@@ -72,7 +72,7 @@ export default function TagReport() {
 			const newKillList = [...taggerDoc.data().tagged, uuid];
 			await updateDoc(taggerRef, {
 				tagged: newKillList,
-				score: taggerDoc.data().score + 1,
+				score: taggerDoc.data().score + victimDoc.data().score + 1,
 			});
 
 			// Update victim's database entry to reflect who has tagged them
