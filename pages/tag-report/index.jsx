@@ -54,9 +54,11 @@ export default function TagReport() {
 			// Error handling:
 			if (!user) {
 				throw "Oh no! You're not logged in.";
+			} else if (taggerDoc.data().outBy == -1) {
+				throw "You are trying to tag someone as a spectator. Please log in with the account that you used to play the game.";
 			} else if (taggerDoc.data().outBy != 0) {
 				throw "It would seem that you are attempting to tag someone, yet you also happen to be tagged. Nice try :^)";
-			} else if (!(victimSnap.size > 0)) {
+			} else if (!(victimSnap.size > 0) || victimDoc.data().outBy == -1) {
 				throw "Sorry, but the player ID that you have entered does not exist. Please ensure that you have entered the numbers properly.";
 			} else if (taggerDoc.data().id == victimDoc.data().id) {
 				throw "You can't tag yourself silly! Why are you even trying to do that? It's like you don't want to win.";

@@ -125,7 +125,7 @@ const smStats = (stats, totalPlayers) => {
 const getStats = async () => {
 	const docRef = doc(db, "users", "global");
 	const stats = await getDoc(docRef);
-	return [stats.data().usersOut, stats.data().activeIds.length];
+	return [stats.data().usersOut, stats.data().totalPlayers];
 };
 
 export default function Home() {
