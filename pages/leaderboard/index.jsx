@@ -9,16 +9,16 @@ import PageTitle from "@components/pageTitle";
 import LeaderboardCards from "@components/leaderboards/leaderboardCards";
 import LeaderboardRows from "@components/leaderboards/leaderboardRows";
 import LeaderboardCardSkeleton from "@components/leaderboards/leaderboardCardSkeleton";
+import LeaderboardRowSkeleton from "@components/leaderboards/leaderboardRowSkeleton";
 
 export default function LeaderboardPage() {
 	const { user } = useUserData();
-	const [leaderboardSelection, setLeaderboard] = useState(0);
 
 	const [values, loading, error, snapshot] = useCollectionData(
 		query(collection(firestore, "users"), orderBy("score", "desc"))
 	);
 
-	if (loading == true) {
+	if (loading) {
 		return (
 			<>
 				<NavBar />
@@ -37,6 +37,13 @@ export default function LeaderboardPage() {
 								<LeaderboardRowSkeleton />
 							</ul> */}
 						</div>
+						<ul className="divide-y">
+							<LeaderboardRowSkeleton />
+							<LeaderboardRowSkeleton />
+							<LeaderboardRowSkeleton />
+							<LeaderboardRowSkeleton />
+							<LeaderboardRowSkeleton />
+						</ul>
 					</div>
 				</div>
 			</>
@@ -54,41 +61,41 @@ export default function LeaderboardPage() {
 				<PageTitle>Leaderboard</PageTitle>
 			</div>
 			<div className="lg:m-10 lg:grid lg:grid-cols-7">
-				{leaderboardSelection == 0 && (
-					<div className="lg:col-span-7 lg:col-start-1 lg:m-2">
-						<div className="container mx-auto mt-4 hidden lg:inline">
-							<div className="grid grid-cols-3">
-								<LeaderboardCards
-									activeUsers={activeUsers}
-									user={user}
-								/>
-							</div>
-							<ul className="divide-y divide-gray-100 dark:divide-white">
-								<LeaderboardRows
-									mobile={false}
-									leaderboardData={leaderboard}
-									user={user}
-								/>
-							</ul>
+				<div className="lg:col-span-7 lg:col-start-1 lg:m-2">
+					<div className="container mx-auto mt-4 hidden lg:inline">
+						<div className="grid grid-cols-3">
+							<LeaderboardCards
+								activeUsers={activeUsers}
+								user={user}
+								startIndex={0}
+								endIndex={3}
+							/>
 						</div>
-						<div className="container mx-auto mt-4 lg:hidden">
-							<ul className="divide-y divide-gray-100 dark:divide-white">
-								<LeaderboardRows
-									mobile={true}
-									leaderboardData={leaderboard}
-									user={user}
-								/>
-							</ul>
-						</div>
+						<ul className="divide-y divide-gray-100 dark:divide-white">
+							<LeaderboardRows
+								leaderboardData={leaderboard}
+								user={user}
+								startIndex={3}
+								endIndex={leaderboard.length}
+							/>
+						</ul>
 					</div>
-				)}
+					<div className="container mx-auto mt-4 lg:hidden">
+						<ul className="divide-y divide-gray-100 dark:divide-white">
+							<LeaderboardRows
+								mobile={true}
+								leaderboardData={leaderboard}
+								startIndex={0}
+								endIndex={leaderboard.length}
+							/>
+						</ul>
+					</div>
+				</div>
 
-				{leaderboardSelection == 1 && (
-					<div className="lg:col-span-6 lg:col-start-1 lg:m-2">
-						{/*<TeamLeaderboard data={values} user={user} />*/}
-						<p>Sorry, not here yet {";)"}</p>
-					</div>
-				)}
+				{/* <div className="lg:col-span-6 lg:col-start-1 lg:m-2">
+						{/*<TeamLeaderboard data={values} user={user} />
+								<p>Sorry, not here yet</p>
+					</div> */}
 				{/* <div className="col-span-1 col-start-7 mt-6 hidden h-20 rounded border-2 border-gray-700 bg-gray-800 shadow-xl lg:inline">
 					<button
 						className="mx-4 mt-2 flex justify-between text-white hover:text-gray-400"

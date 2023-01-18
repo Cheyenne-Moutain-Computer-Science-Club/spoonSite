@@ -1,9 +1,9 @@
 export default function LeaderboardCardSkeleton() {
 	return (
-		<div className="m-4 h-72 rounded-lg border bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
-			<div className="flex animate-pulse flex-col items-center pb-10 pt-3">
+		<div className="m-4 rounded-lg border bg-gray-50 dark:border-gray-700 dark:bg-gray-800">
+			<div className="flex animate-pulse items-center justify-between p-2">
 				<svg
-					className="m-10 h-32 w-32 align-middle text-gray-200 dark:text-gray-700"
+					className="h-20 w-20 text-gray-200 dark:text-gray-700"
 					aria-hidden="true"
 					fill="currentColor"
 					viewBox="0 0 20 20"
@@ -15,8 +15,8 @@ export default function LeaderboardCardSkeleton() {
 						clipRule="evenodd"
 					></path>
 				</svg>
-				<div className="mb-4 h-2.5 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
-				<div className="h-2.5 w-24 rounded-full bg-gray-300 dark:bg-gray-600"></div>
+				<div className="absolute left-40 h-2.5 w-48 rounded-full bg-gray-200 dark:bg-gray-700"></div>
+				<div className="mx-4 hidden h-2.5 w-24 rounded-full bg-gray-300 dark:bg-gray-600 md:inline"></div>
 			</div>
 		</div>
 	);

@@ -31,7 +31,7 @@ const timeUntilEnd = () => {
 
 const bigStats = (stats, totalPlayers) => {
 	return (
-		<div className="flex justify-center">
+		<div className="flex justify-center" id="Homepage">
 			<div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-gray-100 py-5 pl-5 pr-8 dark:bg-darkerblue-100">
 				<div className="grid grid-cols-4 gap-2">
 					<div className="h-full w-full">
@@ -80,7 +80,7 @@ const mdStats = (stats, totalPlayers) => {
 						{SingleBox("Days Remaining", timeUntilEnd())}
 					</div>
 					<div className="h-full w-full">
-						{SingleBox("Coming soon...", "NaN")}
+						{SingleBox("Coming soon...", "Null")}
 					</div>
 					<div className="col-span-3 h-full w-full">
 						{TripleBox("Testing5", 47)}
@@ -111,7 +111,7 @@ const smStats = (stats, totalPlayers) => {
 						{SingleBox("Days Remaining", timeUntilEnd())}
 					</div>
 					<div className="h-full w-full">
-						{SingleBox("Coming soon...", "NaN")}
+						{SingleBox("Coming soon...", "Null")}
 					</div>
 					<div className="col-span-3 h-full w-full">
 						{TripleBox("Testing5", 47)}
@@ -191,6 +191,8 @@ export default function Home() {
 							<LeaderboardCards
 								activeUsers={values}
 								user={user}
+								startIndex={0}
+								endIndex={3}
 							/>
 						</div>
 					)}

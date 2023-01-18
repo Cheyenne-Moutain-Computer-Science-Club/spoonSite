@@ -1,27 +1,18 @@
-export default function LeaderboardRows({ mobile, leaderboardData, user }) {
+export default function LeaderboardRows({
+	leaderboardData,
+	user,
+	startIndex,
+	endIndex,
+}) {
 	if (!leaderboardData) {
 		return;
 	}
 
-	let leaderboardDataScaled = leaderboardData;
-
-	if (!mobile) {
-		leaderboardDataScaled = leaderboardData.slice(
-			3,
-			leaderboardData.length
-		);
-	}
-
-	return leaderboardDataScaled.map((data, i) => {
+	return leaderboardData.slice(startIndex, endIndex).map((data, i) => {
 		const name = data.name.replace("-Student", "");
 		const image = data.image;
 		const score = data.score + ` pt${data.score != 1 ? "s" : ""}.`;
-		let place;
-		if (mobile) {
-			place = data.outBy ? "OUT" : i + 1;
-		} else {
-			place = data.outBy ? "OUT" : i + 4;
-		}
+		const place = data.outBy ? "OUT" : i + 1 + startIndex;
 		const highlight = data.name == user?.displayName;
 		const gray = data.outBy;
 
