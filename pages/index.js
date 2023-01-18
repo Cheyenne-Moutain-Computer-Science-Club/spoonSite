@@ -136,13 +136,10 @@ export default function Home() {
 	// 	useDocument(doc(db, "users", "global"));
 
 	const [values, loading, error, snapshot] = useCollectionData(
-		query(
-			collection(db, "users"),
-			where("outBy", "==", 0),
-			orderBy("score", "desc")
-		)
+		query(collection(db, "users"), orderBy("score", "desc"))
 	);
 
+	console.log(values);
 	const { user } = useUserData();
 	// Update # of users in the game statistics
 	useEffect(() => {
