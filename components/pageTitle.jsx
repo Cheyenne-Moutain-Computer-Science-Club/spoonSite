@@ -1,16 +1,9 @@
-import React from "react";
-// import { Nabla } from "@next/font/google";
-
-// const nabla = Nabla({ subsets: ["latin"] });
-
-export default function PageTitle(text) {
-    return (
-        <div>
-            <div className="mono text-white" /*{nabla.className}*/>
-                <h1 className="inline-block border-b-8 border-dashed border-amber-400 p-4 text-6xl font-black tracking-widest">
-                    {text}
-                </h1>
-            </div>
-        </div>
-    );
+export default function PageTitle(props) {
+	return (
+		<div className="mono text-gray-900 dark:text-white">
+			<h1 className="inline-block border-b-8 border-dashed border-teal-300 p-4 text-4xl font-black tracking-widest lg:text-6xl">
+				{props.children}
+			</h1>
+		</div>
+	);
 }

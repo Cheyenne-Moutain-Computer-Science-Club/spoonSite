@@ -3,5 +3,21 @@
 @tailwind utilities;
 
 :root {
-	background-color: #111827;
+	background-color: #ffffff;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		background-color: #111827;
+	}
+}
+
+@layer components {
+	.emphasis {
+		@apply underline decoration-blue-500 decoration-2 underline-offset-4;
+	}
+
+	.navigation-item {
+		@apply flex justify-between py-2 pl-3 pr-4 text-gray-900 hover:text-white lg:p-0;
+	}
 }
