@@ -34,7 +34,7 @@ const timeUntilEnd = () => {
 const bigStats = (stats, totalPlayers) => {
 	return (
 		<div className="flex justify-center" id="Homepage">
-			<div className="mind-w-max mx-32 my-10 max-w-3xl rounded-xl border-2 border-neutral-300 bg-gray-100 py-5 pl-5 pr-8 dark:bg-darkerblue-100">
+			<div className="mx-8 my-10 rounded-xl border-2 border-neutral-300 bg-gray-100 py-5 pl-5 pr-8 dark:bg-darkerblue-100">
 				<div className="grid grid-cols-4 gap-2">
 					<div className="h-full w-full">
 						{SingleBox("Total Players", totalPlayers)}
@@ -50,12 +50,12 @@ const bigStats = (stats, totalPlayers) => {
 					<div className="h-full w-full">
 						{SingleBox("Days Remaining", timeUntilEnd())}
 					</div>
-					<div className="h-full w-full">
-						{SingleBox("Coming soon...", "NaN")}
+					{/* <div className="h-full w-full">
+						{SingleBox("Interact Club", "Run By")}
 					</div>
 					<div className="col-span-3 h-full w-full">
-						{TripleBox("Testing5", 47)}
-					</div>
+						{TripleBox("Hi", 47)}
+					</div> */}
 				</div>
 			</div>
 		</div>
@@ -65,7 +65,7 @@ const bigStats = (stats, totalPlayers) => {
 const mdStats = (stats, totalPlayers) => {
 	return (
 		<div className="flex justify-center">
-			<div className="mind-w-max mx-32 my-10 max-w-xl rounded-xl border-2 border-neutral-300 bg-gray-100 py-5 pl-5 pr-8 dark:bg-darkerblue-100">
+			<div className="rounded-xl border-2 border-neutral-300 bg-gray-100 py-5 pl-5 pr-8 dark:bg-darkerblue-100">
 				<div className="grid grid-cols-4 gap-5">
 					<div className="h-full w-full">
 						{SingleBox("Total Players", totalPlayers)}
@@ -81,12 +81,12 @@ const mdStats = (stats, totalPlayers) => {
 					<div className="h-full w-full">
 						{SingleBox("Days Remaining", timeUntilEnd())}
 					</div>
-					<div className="h-full w-full">
+					{/* <div className="h-full w-full">
 						{SingleBox("Coming soon...", "Null")}
 					</div>
 					<div className="col-span-3 h-full w-full">
 						{TripleBox("Testing5", 47)}
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
@@ -112,12 +112,12 @@ const smStats = (stats, totalPlayers) => {
 					<div className="h-full w-full">
 						{SingleBox("Days Remaining", timeUntilEnd())}
 					</div>
-					<div className="h-full w-full">
+					{/* <div className="h-full w-full">
 						{SingleBox("Coming soon...", "Null")}
 					</div>
 					<div className="col-span-3 h-full w-full">
 						{TripleBox("Testing5", 47)}
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>
@@ -183,7 +183,21 @@ export default function Home() {
 							</button>
 						</div>
 					)}
-					<br className="my-0 md:my-5" />
+					<br className="my-0 md:my-3" />
+					<div className="hidden lg:block">
+						{/* {bigStats(stats, totalPlayers)} */}
+						{bigStats(stats[0], stats[1])}
+					</div>
+					<div className="hidden md:block lg:hidden">
+						{/* {mdStats(stats, totalPlayers)} */}
+						{mdStats(stats[0], stats[1])}
+					</div>
+					<div className="block md:hidden">
+						{/* {smStats(stats, totalPlayers)} */}
+						{smStats(stats[0], stats[1])}
+					</div>
+					<br className="my-0 md:my-1" />
+
 					<div className="mono ml-10 text-gray-900 dark:text-white">
 						<h1 className="hidden border-b-8 border-dashed border-teal-300 p-4 text-4xl font-black tracking-widest lg:inline-block">
 							Current Standings:
@@ -211,20 +225,6 @@ export default function Home() {
 								See More
 							</button>
 						</Link>
-					</div>
-
-					<br className="my-5" />
-					<div className="hidden lg:block">
-						{/* {bigStats(stats, totalPlayers)} */}
-						{bigStats(stats[0], stats[1])}
-					</div>
-					<div className="hidden md:block lg:hidden">
-						{/* {mdStats(stats, totalPlayers)} */}
-						{mdStats(stats[0], stats[1])}
-					</div>
-					<div className="block md:hidden">
-						{/* {smStats(stats, totalPlayers)} */}
-						{smStats(stats[0], stats[1])}
 					</div>
 				</div>
 			</div>
